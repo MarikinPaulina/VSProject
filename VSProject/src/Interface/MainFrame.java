@@ -62,8 +62,8 @@ public class MainFrame extends JFrame {
 
 
 	MenuPanel menuP = new MenuPanel(null,this);
-	OptionsPanel optionsP = new OptionsPanel(this);
-	InitPanel initP = new InitPanel(this);
+	OptionsPanel optionsP = new OptionsPanel(null,this);
+	InitPanel initP = new InitPanel(null,this);
 	GamePanel gameP = new GamePanel(null,this);
 	CardLayout layout = new CardLayout();
 	JPanel mainP = new JPanel(layout);
