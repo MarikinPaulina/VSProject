@@ -4,10 +4,10 @@ public class Body
 {
 
 	protected double mass;
-	protected int x;
-	protected int y;
-	protected int vx;
-	protected int vy;
+	protected double x;
+	protected double y;
+	protected double vx;
+	protected double vy;
 	
 	public double getMass() 
 	{
@@ -19,37 +19,39 @@ public class Body
 		mass = Mass;
 	}
 
-	public int getX() {
+	public double getX() {
 		return x;
 	}
 
-	public void setX(int x) {
+	public void setX(double x) {
 		this.x = x;
 	}
 
-	public int getY() {
+	public double getY() {
 		return y;
 	}
 
-	public void setY(int y) {
+	public void setY(double y) {
 		this.y = y;
 	}
 
-	public int getVx() {
+	public double getVx() {
 		return vx;
 	}
 
-	public void setVx(int vx) {
+	public void setVx(double vx) {
 		this.vx = vx;
 	}
 
-	public int getVy() {
+	public double getVy() {
 		return vy;
 	}
 
-	public void setVy(int vy) {
+	public void setVy(double vy) {
 		this.vy = vy;
 	}
+
+	
 	
 	
 }
