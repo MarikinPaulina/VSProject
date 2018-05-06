@@ -11,12 +11,20 @@ public class RungeKutta4 {
 	
 	
 	
-	public static void step(ArrayList<Body> targets, ArrayList<Body> sources)
+	public static void step(ArrayList<Body> targets, ArrayList<Body> sources, double h)
 	{
-		
+		ArrayList<Body> buffors = sources;
+		buffors.addAll(targets);
+		for (Body target : targets)
+		{
+			Body buffor = target;
+			buffors.remove(buffor);
+			RK4(target, buffors, h);
+			buffors.add(buffor);
+		}
 	}
 	
-	public static Body RK4(Body target, ArrayList<Body> sources, double h)
+	public static void RK4(Body target, ArrayList<Body> sources, double h)
 	{
 		double[] K1 = acceleration(target, sources);
 		K1[0] *= h;
@@ -52,8 +60,10 @@ public class RungeKutta4 {
 		buffor = target;
 		buffor.setVx(buffor.getVx() + (K1[0] + 2*K2[0] + 2*K3[0] + K4[0])/6);
 		buffor.setVy(buffor.getVy() + (K1[1] + 2*K2[1] + 2*K3[1] + K4[1])/6);
+		buffor.setX(buffor.getX() + buffor.getVx()*h);
+		buffor.setY(buffor.getY() + buffor.getVy()*h);
 		
-		return buffor;
+		target = buffor;
 	}
 	
 	public static double[] acceleration(Body target, ArrayList<Body> sources)
