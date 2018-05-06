@@ -61,6 +61,7 @@ public class GamePanel extends JPanel {
 					}
 				if(gameKey == leftKey){
 					xLoc -= 5;
+					
 					if(xLoc < 0)
 						xLoc = 0;
 					repaint();

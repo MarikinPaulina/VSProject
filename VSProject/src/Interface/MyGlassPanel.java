@@ -74,6 +74,7 @@ public class MyGlassPanel extends JComponent  {
 
 			public void actionPerformed(ActionEvent arg0) {
 				glass.setVisible(false);
+				frame.gameP.isVisible = false;
 				frame.layout.show(frame.mainP, "options");
 			}
 

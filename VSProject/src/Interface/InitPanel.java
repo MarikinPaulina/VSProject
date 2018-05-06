@@ -38,6 +38,7 @@ public class InitPanel extends JPanel {
 
 			public void actionPerformed(ActionEvent arg0) {
 				frame.layout.show(frame.mainP, "game");
+				frame.gameP.isVisible = true;
 			}
 
 		};
