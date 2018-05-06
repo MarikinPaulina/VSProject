@@ -8,11 +8,14 @@ import java.awt.HeadlessException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+import Simulation.*;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class MainFrame extends JFrame {
 
@@ -76,6 +79,13 @@ public class MainFrame extends JFrame {
 		MainFrame frame = new MainFrame("VSProject");
 		frame.setVisible(true);
 
+//		Testy
+		
+//		Body test1 = new Body(5,4,3,5,12);
+//		Body test2 = new Body(10,4,3,5,12);
+//		ArrayList<Body> testA = new ArrayList<Body>();
+//		testA.add(test2);
+//		RungeKutta4.RK4(test1, testA, 5);
 	}
 
 }

@@ -9,6 +9,15 @@ public class Body
 	protected double vx;
 	protected double vy;
 	
+	public Body(double x, double y, double vx, double vy, double mass)
+	{
+		this.x = x;
+		this.y = y;
+		this.vx = vx;
+		this.vy = vy;
+		this.mass = mass;
+	}
+	
 	public double getMass() 
 	{
 		return mass;

@@ -1,5 +1,6 @@
-package Simulation;
+package Map;
 
 public class Map {
+
 
 }
