@@ -16,41 +16,44 @@ public class RungeKutta4 {
 		
 	}
 	
-	public static RungeKutta4 RK4(Body target, ArrayList<Body> sources, double h)
+	public static Body RK4(Body target, ArrayList<Body> sources, double h)
 	{
-		RungeKutta4 rk4 = new RungeKutta4();
-		rk4.K1 = acceleration(target, sources);
-		rk4.K1[0] *= h;
-		rk4.K1[1] *= h;
+		double[] K1 = acceleration(target, sources);
+		K1[0] *= h;
+		K1[1] *= h;
 		
 		Body buffor = target;
-		buffor.setVx(buffor.getVx() + rk4.K1[0]/2);
-		buffor.setVy(buffor.getVy() + rk4.K1[1]/2);
+		buffor.setVx(buffor.getVx() + K1[0]/2);
+		buffor.setVy(buffor.getVy() + K1[1]/2);
 		buffor.setX(buffor.getX() + buffor.getVx()*h/2);
 		buffor.setY(buffor.getY() + buffor.getVy()*h/2);
-		rk4.K2 = acceleration(buffor, sources);
-		rk4.K2[0] *= h;
-		rk4.K2[1] *= h;
+		double[] K2 = acceleration(buffor, sources);
+		K2[0] *= h;
+		K2[1] *= h;
 		
 		buffor = target;
-		buffor.setVx(buffor.getVx() + rk4.K2[0]/2);
-		buffor.setVy(buffor.getVy() + rk4.K2[1]/2);
+		buffor.setVx(buffor.getVx() + K2[0]/2);
+		buffor.setVy(buffor.getVy() + K2[1]/2);
 		buffor.setX(buffor.getX() + buffor.getVx()*h/2);
 		buffor.setY(buffor.getY() + buffor.getVy()*h/2);
-		rk4.K3 = acceleration(buffor, sources);
-		rk4.K3[0] *= h;
-		rk4.K3[1] *= h;
+		double[] K3 = acceleration(buffor, sources);
+		K3[0] *= h;
+		K3[1] *= h;
 		
 		buffor = target;
-		buffor.setVx(buffor.getVx() + rk4.K3[0]);
-		buffor.setVy(buffor.getVy() + rk4.K3[1]);
+		buffor.setVx(buffor.getVx() + K3[0]);
+		buffor.setVy(buffor.getVy() + K3[1]);
 		buffor.setX(buffor.getX() + buffor.getVx()*h);
 		buffor.setY(buffor.getY() + buffor.getVy()*h);
-		rk4.K4 = acceleration(buffor, sources);
-		rk4.K4[0] *= h;
-		rk4.K4[1] *= h;
+		double[] K4 = acceleration(buffor, sources);
+		K4[0] *= h;
+		K4[1] *= h;
 		
-		return rk4;
+		buffor = target;
+		buffor.setVx(buffor.getVx() + (K1[0] + 2*K2[0] + 2*K3[0] + K4[0])/6);
+		buffor.setVy(buffor.getVy() + (K1[1] + 2*K2[1] + 2*K3[1] + K4[1])/6);
+		
+		return buffor;
 	}
 	
 	public static double[] acceleration(Body target, ArrayList<Body> sources)
