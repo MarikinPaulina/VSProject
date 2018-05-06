@@ -14,8 +14,18 @@ import java.net.URL;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
+import Map.*;
+
 public class GamePanel extends JPanel {
 
+	double dv = 0.5;
+	double dfi = 0.05;
+	int upKey = KeyEvent.VK_UP;
+	int downKey = KeyEvent.VK_DOWN;
+	int leftKey = KeyEvent.VK_LEFT;
+	int rightKey = KeyEvent.VK_LEFT;
+	Map map;
+	
 	public GamePanel() {
 		// TODO Auto-generated constructor stub
 	}
@@ -32,29 +42,30 @@ public class GamePanel extends JPanel {
 		}
 		dimension =	new Dimension(back.getWidth(), back.getHeight());
 		setPreferredSize(dimension);
+		map = new ClassicSolarSystem();
 		KeyListener moveListener = new KeyListener() {
 			public void keyTyped(KeyEvent e) {}
 			public void keyPressed(KeyEvent e) {
 				int gameKey = e.getKeyCode();
-				if(gameKey == KeyEvent.VK_UP){
+				if(gameKey == upKey){
 					yLoc -= 5;
 					if(yLoc < 0)
 						yLoc = 0;
 					repaint();
 					}
-				if(gameKey == KeyEvent.VK_DOWN){
+				if(gameKey == downKey){
 					yLoc += 5;
 					if(yLoc > frame.dimension.height)
 						yLoc = frame.dimension.height;
 					repaint();
 					}
-				if(gameKey == KeyEvent.VK_LEFT){
+				if(gameKey == leftKey){
 					xLoc -= 5;
 					if(xLoc < 0)
 						xLoc = 0;
 					repaint();
 					}
-				if(gameKey == KeyEvent.VK_RIGHT){
+				if(gameKey == rightKey){
 					xLoc += 5;
 					if(xLoc > frame.dimension.width)
 						xLoc = frame.dimension.width;
@@ -80,9 +91,9 @@ public class GamePanel extends JPanel {
 	public void paintComponent(Graphics g) {
 		 Graphics2D g2d = (Graphics2D) g;
 		 g2d.drawImage(back, 0, 0, this);
-		 g2d.setColor(Color.red);
-//		 g2d.fillRect(loc.width, loc.height, 5, 5);
-		 g2d.fillRect(xLoc, yLoc, 5, 5);
+//		 g2d.setColor(Color.red);
+//		 g2d.fillRect(xLoc, yLoc, 5, 5);
+		 map.draw(g2d);
 		 }
 
 	BufferedImage back;

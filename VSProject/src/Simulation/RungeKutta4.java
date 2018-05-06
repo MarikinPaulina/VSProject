@@ -96,8 +96,8 @@ public class RungeKutta4 {
 				
 		for(Body source : sources)
 		{
-			double dx = Math.abs((source.getX()-target.getX()));
-			double dy = Math.abs((source.getY()-target.getY()));
+			double dx = (source.getX() - target.getX());
+			double dy = (source.getY() - target.getY());
 			double r = Math.sqrt(Math.pow(dx, 2)+Math.pow(dy, 2));
 			
 			a[0] += source.getMass() * dx /Math.pow(r, 3);

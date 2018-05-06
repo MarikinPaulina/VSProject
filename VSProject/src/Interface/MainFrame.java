@@ -81,11 +81,19 @@ public class MainFrame extends JFrame {
 
 //		Testy
 		
-//		Body test1 = new Body(5,4,3,5,12);
-//		Body test2 = new Body(10,4,3,5,12);
+//		int n = 900;
+//		Body sun = new Body(0,0,0,0,100);
+//		Body planet = new Body(1000,0,5,5,5);
 //		ArrayList<Body> testA = new ArrayList<Body>();
-//		testA.add(test2);
-//		RungeKutta4.RK4(test1, testA, 5);
+//		testA.add(sun);
+//		System.out.println(planet.getX()+","+planet.getY());
+//		for(int i=0;i<n;i++)
+//		{
+//			RungeKutta4.RK4(planet, testA, 1);
+//			System.out.println(planet.getX()+","+planet.getY());
+//		}
+		
+		
 	}
 
 }

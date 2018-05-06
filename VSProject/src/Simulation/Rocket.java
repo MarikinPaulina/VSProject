@@ -5,7 +5,7 @@ public class Rocket extends Body {
 	protected double width;
 	protected double height;
 	
-	public Rocket(double x, double y, double vx, double vy, double width, double height, double mass)
+	public Rocket(double x, double y, double vx, double vy, double mass, double width, double height)
 	{
 		super(x, y, vx, vy, mass);
 		this.height = height;

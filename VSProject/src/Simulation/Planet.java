@@ -4,7 +4,7 @@ public class Planet extends Body {
 
 	protected double radius;
 	
-	public Planet(double x, double y, double vx, double vy, double r, double mass)
+	public Planet(double x, double y, double vx, double vy, double mass, double r)
 	{
 		super(x, y, vx, vy, mass);
 		this.radius = r;
