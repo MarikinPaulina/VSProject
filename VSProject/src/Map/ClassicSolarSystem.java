@@ -12,7 +12,7 @@ public class ClassicSolarSystem extends Map{
 	public int centerY = 330;
 	public double r1 = 150;
 	public double fi1 = 20;
-	public double dfi1 = 1;
+	public double dfi1 = 0.5;
 	
 	
 	public ClassicSolarSystem() {

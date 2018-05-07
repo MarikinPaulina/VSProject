@@ -21,6 +21,7 @@ public class RungeKutta4 {
 			buffors.remove(buffor);
 			RK4(target, buffors, h);
 			buffors.add(buffor);
+			System.out.println(target.getX()+","+target.getY()); //Testy
 		}
 	}
 	

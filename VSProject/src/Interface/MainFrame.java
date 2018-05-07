@@ -84,15 +84,16 @@ public class MainFrame extends JFrame {
 				frame.setVisible(true);
 				
 				final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(2);
-				final ScheduledFuture<?> sc1 = scheduler.scheduleAtFixedRate(frame.gameP, 0, 5, TimeUnit.MILLISECONDS);
+				final ScheduledFuture<?> sc1 = scheduler.scheduleAtFixedRate(frame.gameP, 0, 5, TimeUnit.SECONDS);
 			}
 		});
 
-//		Testy
-		
+////		Testy
+//		
 //		int n = 900;
-//		Body sun = new Body(0,0,0,0,100);
-//		Body planet = new Body(1000,0,5,5,5);
+//		Body sun = new Body(0,0,0,0,100,0,0);
+////		Body planet = new Body(1000,0,5,5,5,0,0);
+//		Rocket rocket = new Rocket(600,400,0,0,0.5,0,0,2,5);
 //		ArrayList<Body> testA = new ArrayList<Body>();
 //		testA.add(sun);
 //		System.out.println(planet.getX()+","+planet.getY());
@@ -101,8 +102,8 @@ public class MainFrame extends JFrame {
 //			RungeKutta4.RK4(planet, testA, 1);
 //			System.out.println(planet.getX()+","+planet.getY());
 //		}
-		
-		
+//		
+////		
 		
 	}
 

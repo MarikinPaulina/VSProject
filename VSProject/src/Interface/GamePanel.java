@@ -109,8 +109,14 @@ public class GamePanel extends JPanel implements Runnable{
 
 	@Override
 	public void run() {
-		RungeKutta4.step(mapCSS.targets, mapCSS.sources, h);
-		mapCSS.planets.get(0).setX(mapCSS.centerX+mapCSS.r1*Math.cos(mapCSS.fi1+mapCSS.dfi1));
-		repaint();
+		if(isVisible==true)
+		{
+			RungeKutta4.step(mapCSS.targets, mapCSS.sources, h);
+			mapCSS.fi1 += mapCSS.dfi1;
+			mapCSS.planets.get(1).setX(mapCSS.centerX+mapCSS.r1*Math.cos(mapCSS.fi1*Math.PI/180));
+			mapCSS.planets.get(1).setY(mapCSS.centerY+mapCSS.r1*Math.sin(mapCSS.fi1*Math.PI/180));		
+			repaint();
+		}
+
 	}
 }
