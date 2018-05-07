@@ -7,9 +7,11 @@ import Simulation.*;
 
 public abstract class Map {
 
-	Planet sun;
-	ArrayList<Planet> planets = new ArrayList<Planet>();
-	Rocket rocket;
+	public ArrayList<Planet> planets = new ArrayList<Planet>();
+	public Rocket rocket;
+	
+	public ArrayList<Body> sources = new ArrayList<Body>();
+	public ArrayList<Body> targets = new ArrayList<Body>();
 	
 	public abstract void draw(Graphics2D g2d);
 }

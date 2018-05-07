@@ -15,8 +15,10 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import Map.*;
+import Simulation.Planet;
+import Simulation.RungeKutta4;
 
-public class GamePanel extends JPanel {
+public class GamePanel extends JPanel implements Runnable{
 
 	double dv = 0.5;
 	double dfi = 0.05;
@@ -24,7 +26,8 @@ public class GamePanel extends JPanel {
 	int downKey = KeyEvent.VK_DOWN;
 	int leftKey = KeyEvent.VK_LEFT;
 	int rightKey = KeyEvent.VK_LEFT;
-	Map map;
+	double h = 0.1;
+	ClassicSolarSystem mapCSS;
 	
 	public GamePanel() {
 		// TODO Auto-generated constructor stub
@@ -42,7 +45,7 @@ public class GamePanel extends JPanel {
 		}
 		dimension =	new Dimension(back.getWidth(), back.getHeight());
 		setPreferredSize(dimension);
-		map = new ClassicSolarSystem();
+		mapCSS = new ClassicSolarSystem();
 		KeyListener moveListener = new KeyListener() {
 			public void keyTyped(KeyEvent e) {}
 			public void keyPressed(KeyEvent e) {
@@ -94,7 +97,7 @@ public class GamePanel extends JPanel {
 		 g2d.drawImage(back, 0, 0, this);
 //		 g2d.setColor(Color.red);
 //		 g2d.fillRect(xLoc, yLoc, 5, 5);
-		 map.draw(g2d);
+		 mapCSS.draw(g2d);
 		 }
 
 	BufferedImage back;
@@ -103,4 +106,11 @@ public class GamePanel extends JPanel {
 	int xLoc = 575;
 	int yLoc = 300;
 	boolean isVisible = false;
+
+	@Override
+	public void run() {
+		RungeKutta4.step(mapCSS.targets, mapCSS.sources, h);
+		mapCSS.planets.get(0).setX(mapCSS.centerX+mapCSS.r1*Math.cos(mapCSS.fi1+mapCSS.dfi1));
+		repaint();
+	}
 }

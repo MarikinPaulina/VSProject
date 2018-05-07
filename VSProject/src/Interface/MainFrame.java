@@ -16,6 +16,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.concurrent.*;
 
 public class MainFrame extends JFrame {
 
@@ -76,8 +77,16 @@ public class MainFrame extends JFrame {
 	Dimension dimension;
 	
 	public static void main(String[] args) {
-		MainFrame frame = new MainFrame("VSProject");
-		frame.setVisible(true);
+		SwingUtilities.invokeLater(new Runnable() {
+
+			public void run() {
+				MainFrame frame = new MainFrame("VSProject");
+				frame.setVisible(true);
+				
+				final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(2);
+				final ScheduledFuture<?> sc1 = scheduler.scheduleAtFixedRate(frame.gameP, 0, 5, TimeUnit.MILLISECONDS);
+			}
+		});
 
 //		Testy
 		
@@ -92,6 +101,7 @@ public class MainFrame extends JFrame {
 //			RungeKutta4.RK4(planet, testA, 1);
 //			System.out.println(planet.getX()+","+planet.getY());
 //		}
+		
 		
 		
 	}
