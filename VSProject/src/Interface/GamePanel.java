@@ -50,27 +50,27 @@ public class GamePanel extends JPanel implements Runnable{
 			public void keyTyped(KeyEvent e) {}
 			public void keyPressed(KeyEvent e) {
 				int gameKey = e.getKeyCode();
+				System.out.println(gameKey);
 				if(gameKey == upKey){
-					yLoc -= 5;
+					mapCSS.rocket.setVy(mapCSS.rocket.getVy() + 1);
 					if(yLoc < 0)
 						yLoc = 0;
 					repaint();
 					}
 				if(gameKey == downKey){
-					yLoc += 5;
+					mapCSS.rocket.setVy(mapCSS.rocket.getVy() - 1);
 					if(yLoc > frame.dimension.height)
 						yLoc = frame.dimension.height;
 					repaint();
 					}
 				if(gameKey == leftKey){
-					xLoc -= 5;
-					
+					mapCSS.rocket.setVx(mapCSS.rocket.getVx() - 1);
 					if(xLoc < 0)
 						xLoc = 0;
 					repaint();
 					}
 				if(gameKey == rightKey){
-					xLoc += 5;
+					mapCSS.rocket.setVx(mapCSS.rocket.getVx() + 1);
 					if(xLoc > frame.dimension.width)
 						xLoc = frame.dimension.width;
 					repaint();
@@ -111,10 +111,12 @@ public class GamePanel extends JPanel implements Runnable{
 	public void run() {
 		if(isVisible==true)
 		{
-			RungeKutta4.step(mapCSS.targets, mapCSS.sources, h);
+//			RungeKutta4.step(mapCSS.targets, mapCSS.sources, h);
 			mapCSS.fi1 += mapCSS.dfi1;
 			mapCSS.planets.get(1).setX(mapCSS.centerX+mapCSS.r1*Math.cos(mapCSS.fi1*Math.PI/180));
-			mapCSS.planets.get(1).setY(mapCSS.centerY+mapCSS.r1*Math.sin(mapCSS.fi1*Math.PI/180));		
+			mapCSS.planets.get(1).setY(mapCSS.centerY+mapCSS.r1*Math.sin(mapCSS.fi1*Math.PI/180));
+			mapCSS.rocket.setX(mapCSS.rocket.getX()-h*mapCSS.rocket.getVx());
+			mapCSS.rocket.setY(mapCSS.rocket.getY()-h*mapCSS.rocket.getVy());
 			repaint();
 		}
 
