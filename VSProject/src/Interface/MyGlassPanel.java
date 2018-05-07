@@ -43,6 +43,7 @@ public class MyGlassPanel extends JComponent  {
 				{
 					if(frame.gameP.isVisible == true)
 					{
+//						System.out.println(key); //Test
 						if(isVisible == false)
 						{
 							isVisible = true;

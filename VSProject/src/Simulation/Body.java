@@ -6,16 +6,20 @@ public class Body
 	protected double mass;
 	protected double x;
 	protected double y;
-	protected double vx;
-	protected double vy;
+	protected double vX;
+	protected double vY;
+	protected double angle;
+	protected double vAngle;
 	
-	public Body(double x, double y, double vx, double vy, double mass)
+	public Body(double x, double y, double vx, double vy, double mass,double angle,double vAngle)
 	{
 		this.x = x;
 		this.y = y;
-		this.vx = vx;
-		this.vy = vy;
+		this.vX = vx;
+		this.vY = vy;
 		this.mass = mass;
+		this.angle = angle;
+		this.vAngle = vAngle;
 	}
 	
 	public double getMass() 
@@ -45,19 +49,35 @@ public class Body
 	}
 
 	public double getVx() {
-		return vx;
+		return vX;
 	}
 
 	public void setVx(double vx) {
-		this.vx = vx;
+		this.vX = vx;
 	}
 
 	public double getVy() {
-		return vy;
+		return vY;
 	}
 
 	public void setVy(double vy) {
-		this.vy = vy;
+		this.vY = vy;
+	}
+
+	public double getAngle() {
+		return angle;
+	}
+
+	public void setAngle(double angle) {
+		this.angle = angle;
+	}
+
+	public double getvAngle() {
+		return vAngle;
+	}
+
+	public void setvAngle(double vAngle) {
+		this.vAngle = vAngle;
 	}
 
 	
