@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.KeyEventDispatcher;
 import java.awt.LayoutManager;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -50,7 +51,7 @@ public class GamePanel extends JPanel implements Runnable{
 			public void keyTyped(KeyEvent e) {}
 			public void keyPressed(KeyEvent e) {
 				int gameKey = e.getKeyCode();
-				System.out.println(gameKey);
+//				System.out.println(gameKey); //Testy
 				if(gameKey == upKey){
 					mapCSS.rocket.setVy(mapCSS.rocket.getVy() + 1);
 					if(yLoc < 0)
@@ -92,6 +93,15 @@ public class GamePanel extends JPanel implements Runnable{
 		// TODO Auto-generated constructor stub
 	}
 	
+//	public class MyDispatcher implements KeyEventDispatcher
+//	{
+//		@Override
+//		public boolean dispatchKeyEvent(KeyEvent e)
+//		{
+//			
+//		}
+//	}
+	
 	public void paintComponent(Graphics g) {
 		 Graphics2D g2d = (Graphics2D) g;
 		 g2d.drawImage(back, 0, 0, this);
@@ -112,11 +122,17 @@ public class GamePanel extends JPanel implements Runnable{
 		if(isVisible==true)
 		{
 //			RungeKutta4.step(mapCSS.targets, mapCSS.sources, h);
-			mapCSS.fi1 += mapCSS.dfi1;
-			mapCSS.planets.get(1).setX(mapCSS.centerX+mapCSS.r1*Math.cos(mapCSS.fi1*Math.PI/180));
-			mapCSS.planets.get(1).setY(mapCSS.centerY+mapCSS.r1*Math.sin(mapCSS.fi1*Math.PI/180));
-			mapCSS.rocket.setX(mapCSS.rocket.getX()-h*mapCSS.rocket.getVx());
-			mapCSS.rocket.setY(mapCSS.rocket.getY()-h*mapCSS.rocket.getVy());
+			mapCSS.fi.set(1,mapCSS.fi.get(1)+mapCSS.dfi.get(1));
+			mapCSS.fi.set(2,mapCSS.fi.get(2)+mapCSS.dfi.get(2));
+			mapCSS.fi.set(3,mapCSS.fi.get(3)+mapCSS.dfi.get(3));
+			mapCSS.planets.get(1).setX(mapCSS.centerX+mapCSS.rX.get(1)*Math.cos(mapCSS.fi.get(1)*Math.PI/180));
+			mapCSS.planets.get(1).setY(mapCSS.centerY+mapCSS.rY.get(1)*Math.sin(mapCSS.fi.get(1)*Math.PI/180));
+			mapCSS.planets.get(2).setX(mapCSS.centerX+mapCSS.rX.get(2)*Math.cos(mapCSS.fi.get(2)*Math.PI/180));
+			mapCSS.planets.get(2).setY(mapCSS.centerY+mapCSS.rY.get(2)*Math.sin(mapCSS.fi.get(2)*Math.PI/180));
+			mapCSS.planets.get(3).setX(mapCSS.centerX+mapCSS.rX.get(3)*Math.cos(mapCSS.fi.get(3)*Math.PI/180));
+			mapCSS.planets.get(3).setY(mapCSS.centerY+mapCSS.rY.get(3)*Math.sin(mapCSS.fi.get(3)*Math.PI/180));
+//			mapCSS.rocket.setX(mapCSS.rocket.getX()-h*mapCSS.rocket.getVx());
+//			mapCSS.rocket.setY(mapCSS.rocket.getY()-h*mapCSS.rocket.getVy());
 			repaint();
 		}
 

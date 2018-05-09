@@ -6,6 +6,7 @@ import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridBagLayout;
+import java.awt.KeyEventDispatcher;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -35,15 +36,22 @@ public class MyGlassPanel extends JComponent  {
 	    glass.add(exitB);
 	    exitB.setBounds(x+15,y+175,170,30);
 		KeyListener glassListener = new KeyListener() {
-			public void keyTyped(KeyEvent e) {}
-			public void keyPressed(KeyEvent e) {}
+			public void keyTyped(KeyEvent e) {
+				String key = KeyEvent.getKeyText(e.getKeyCode());
+				System.out.println("Typed " + key);
+				}
+			public void keyPressed(KeyEvent e) {
+				String key = KeyEvent.getKeyText(e.getKeyCode());
+				System.out.println("Pressed " + key);
+				}
 			public void keyReleased(KeyEvent e) {
-				String key = e.getKeyText(e.getKeyCode());
+				String key = KeyEvent.getKeyText(e.getKeyCode());
+				System.out.println("Released " + key);
 				if(key == "Escape")
 				{
 					if(frame.gameP.isVisible == true)
 					{
-//						System.out.println(key); //Test
+						System.out.println(key); //Test
 						if(isVisible == false)
 						{
 							isVisible = true;
@@ -91,23 +99,17 @@ public class MyGlassPanel extends JComponent  {
 		};
 		loadB.addActionListener(loadListener);
 	}
-
-//	public void keyTyped(KeyEvent e) {
-//		// TODO Auto-generated method stub
-
+	
+	
+//	public class MyDispatcher implements KeyEventDispatcher
+//	{
+//		@Override
+//		public boolean dispatchKeyEvent(KeyEvent e)
+//		{
+//			
+//		}
 //	}
-//
-//	public void keyPressed(KeyEvent e) {
-//		// TODO Auto-generated method stub
-//
-//	}
-//
-//	public void keyReleased(KeyEvent e) {
-//		int key = e.getKeyCode();
-//		setVisible(KeyEvent.getKeyText(key) == "VK_ESCAPE");
-//		System.out.println(KeyEvent.getKeyText(key));
-//
-
+	
 	public void paintComponent(Graphics g)
 	{
 		super.paintComponent(g);
