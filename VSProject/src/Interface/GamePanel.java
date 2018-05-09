@@ -93,14 +93,7 @@ public class GamePanel extends JPanel implements Runnable{
 		// TODO Auto-generated constructor stub
 	}
 	
-//	public class MyDispatcher implements KeyEventDispatcher
-//	{
-//		@Override
-//		public boolean dispatchKeyEvent(KeyEvent e)
-//		{
-//			
-//		}
-//	}
+
 	
 	public void paintComponent(Graphics g) {
 		 Graphics2D g2d = (Graphics2D) g;

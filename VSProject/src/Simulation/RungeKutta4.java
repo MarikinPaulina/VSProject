@@ -1,5 +1,5 @@
 package Simulation;
-
+//Wykonanie: Paulina Marikin
 import java.util.ArrayList;
 
 public class RungeKutta4 {

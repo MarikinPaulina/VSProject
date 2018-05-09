@@ -1,5 +1,5 @@
 package Simulation;
-
+//Wykonanie: Paulina Marikin
 public class Rocket extends Body {
 
 	protected double width;

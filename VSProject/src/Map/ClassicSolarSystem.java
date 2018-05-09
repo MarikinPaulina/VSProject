@@ -1,5 +1,5 @@
 package Map;
-
+//Wykonanie: Paulina Marikin
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.ArrayList;

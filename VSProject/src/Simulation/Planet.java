@@ -1,5 +1,5 @@
 package Simulation;
-
+//Wykonanie: Paulina Marikin
 public class Planet extends Body {
 
 	protected double radius;
