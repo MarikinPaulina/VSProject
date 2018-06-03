@@ -77,31 +77,35 @@ public class MainFrame extends JFrame {
 	Dimension dimension;
 	
 	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-
-			public void run() {
-				MainFrame frame = new MainFrame("VSProject");
-				frame.setVisible(true);
-				
-				final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(2);
-				final ScheduledFuture<?> sc1 = scheduler.scheduleAtFixedRate(frame.gameP, 0, 50, TimeUnit.MILLISECONDS);
-			}
-		});
+//		SwingUtilities.invokeLater(new Runnable() {
+//
+//			public void run() {
+//				MainFrame frame = new MainFrame("VSProject");
+//				frame.setVisible(true);
+//				
+//				final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(2);
+//				final ScheduledFuture<?> sc1 = scheduler.scheduleAtFixedRate(frame.gameP, 0, 5, TimeUnit.MILLISECONDS);
+//				
+//			}
+//		});
 
 ////		Testy
 //		
-//		int n = 900;
-//		Body sun = new Body(0,0,0,0,100,0,0);
-////		Body planet = new Body(1000,0,5,5,5,0,0);
-//		Rocket rocket = new Rocket(600,400,0,0,0.5,0,0,2,5);
-//		ArrayList<Body> testA = new ArrayList<Body>();
-//		testA.add(sun);
-//		System.out.println(planet.getX()+","+planet.getY());
-//		for(int i=0;i<n;i++)
-//		{
-//			RungeKutta4.RK4(planet, testA, 1);
+		int n = 900;
+		double sunMass = 100;
+		Body sun = new Body(0,0,0,20,sunMass,0,0);
+		Body planet = new Body(100,0,0,Math.sqrt(RungeKutta4.G*sunMass/100),2,0,0);
+		Rocket rocket = new Rocket(600,400,0,0,0.5,0,0,2,5);
+		ArrayList<Body> testA = new ArrayList<Body>();
+		testA.add(planet);
+		ArrayList<Body> testB = new ArrayList<Body>();
+		testB.add(sun);
+//		System.out.println(planet.getX()+","+planet.getY()); 
+		for(int i=0;i<n;i++)
+		{
+			RungeKutta4.step(testA, testB, 1);
 //			System.out.println(planet.getX()+","+planet.getY());
-//		}
+		}
 //		
 ////		
 		

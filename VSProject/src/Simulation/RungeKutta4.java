@@ -8,21 +8,33 @@ public class RungeKutta4 {
 	double[] K2;
 	double[] K3;
 	double[] K4;
+	public static final double G = 6.674*Math.pow(10, -1);
 	
 	
 	
 	public static void step(ArrayList<Body> targets, ArrayList<Body> sources, double h)
 	{
-		ArrayList<Body> buffors = sources;
-		buffors.addAll(targets);
+		ArrayList<Body> buffers = new ArrayList<Body>();
+		buffers.addAll(sources);
+		buffers.addAll(targets);
+//		System.out.println(buffers.size()); //Testy
 		for (Body target : targets)
 		{
-			Body buffor = target;
-			buffors.remove(buffor);
-			RK4(target, buffors, h);
-			buffors.add(buffor);
-			System.out.println(target.getX()+","+target.getY()); //Testy
+			RK4(target, buffers, h);			
 		}
+		for (Body target : targets)
+		{
+			System.out.print(target.getX()+","+target.getY()+","); //Testy
+			target.setX(target.getX()+target.getDx());
+			target.setY(target.getY()+target.getDy());
+			target.setVx(target.getVx()+target.getDvx());
+			target.setVy(target.getVy()+target.getDvy());
+			target.setDx(0);
+			target.setDy(0);
+			target.setDvx(0);
+			target.setDvy(0);
+		}
+		System.out.println();
 	}
 	
 	public static void RK4(Body target, ArrayList<Body> sources, double h)
@@ -37,7 +49,8 @@ public class RungeKutta4 {
 			K1[j] *= h;
 		}
 		
-		Body buffor = target;
+		Body buffor = new Body(target);
+//		System.out.println("Przed " + buffor.getVx()); //Testy
 		buffor.setVx(buffor.getVx() + K1[0]/2);
 		buffor.setVy(buffor.getVy() + K1[1]/2);
 		buffor.setX(buffor.getX() + K1[2]/2);
@@ -52,7 +65,8 @@ public class RungeKutta4 {
 			K2[j] *= h;
 		}
 		
-		buffor = target;
+		buffor = new Body(target);
+//		System.out.println("Po " + buffor.getVx()); //Testy
 		buffor.setVx(buffor.getVx() + K2[0]/2);
 		buffor.setVy(buffor.getVy() + K2[1]/2);
 		buffor.setX(buffor.getX() + K2[2]/2);
@@ -67,7 +81,7 @@ public class RungeKutta4 {
 			K3[j] *= h;
 		}
 		
-		buffor = target;
+		buffor = new Body(target);
 		buffor.setVx(buffor.getVx() + K3[0]);
 		buffor.setVy(buffor.getVy() + K3[1]);
 		buffor.setX(buffor.getX() + K3[2]);
@@ -82,13 +96,10 @@ public class RungeKutta4 {
 			K4[j] *= h;
 		}
 		
-		buffor = target;
-		buffor.setVx(buffor.getVx() + (K1[0] + 2*K2[0] + 2*K3[0] + K4[0])/6);
-		buffor.setVy(buffor.getVy() + (K1[1] + 2*K2[1] + 2*K3[1] + K4[1])/6);
-		buffor.setX( buffor.getX() + (K1[2] + 2*K2[2] + 2*K3[2] + K4[2])/6);
-		buffor.setY( buffor.getY() + (K1[3] + 2*K2[3] + 2*K3[3] + K4[3])/6);
-		
-		target = buffor;
+		target.setDvx((K1[0] + 2*K2[0] + 2*K3[0] + K4[0])/6);
+		target.setDvy((K1[1] + 2*K2[1] + 2*K3[1] + K4[1])/6);
+		target.setDx((K1[2] + 2*K2[2] + 2*K3[2] + K4[2])/6);
+		target.setDy((K1[3] + 2*K2[3] + 2*K3[3] + K4[3])/6);
 	}
 	
 	public static double[] acceleration(Body target, ArrayList<Body> sources)
@@ -97,12 +108,14 @@ public class RungeKutta4 {
 				
 		for(Body source : sources)
 		{
+			if(source==target)
+				continue;
 			double dx = (source.getX() - target.getX());
 			double dy = (source.getY() - target.getY());
 			double r = Math.sqrt(Math.pow(dx, 2)+Math.pow(dy, 2));
 			
-			a[0] += source.getMass() * dx /Math.pow(r, 3);
-			a[1] += source.getMass() * dy /Math.pow(r, 3);
+			a[0] += source.getMass() * dx /Math.pow(r, 3) * G;
+			a[1] += source.getMass() * dy /Math.pow(r, 3) * G;
 		}
 		a[0] *= target.getMass();
 		a[1] *= target.getMass();
