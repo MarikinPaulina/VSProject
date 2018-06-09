@@ -94,7 +94,7 @@ public class MainFrame extends JFrame {
 		int n = 900;
 		double sunMass = 100;
 		Body sun = new Body(0,0,0,20,sunMass,0,0);
-		Body planet = new Body(100,0,0,Math.sqrt(RungeKutta4.G*sunMass/100),2,0,0);
+		Body planet = new Body(100,0,0,1,2,0,0);
 		Rocket rocket = new Rocket(600,400,0,0,0.5,0,0,2,5);
 		ArrayList<Body> testA = new ArrayList<Body>();
 		testA.add(planet);
