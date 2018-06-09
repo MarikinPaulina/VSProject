@@ -30,9 +30,7 @@ public class GamePanel extends JPanel implements Runnable{
 	double h = 0.1;
 	ClassicSolarSystem mapCSS;
 	
-	public GamePanel() {
-		// TODO Auto-generated constructor stub
-	}
+	public GamePanel() {}
 
 	public GamePanel(LayoutManager layout,final MainFrame frame) {
 		super(layout);
@@ -53,25 +51,27 @@ public class GamePanel extends JPanel implements Runnable{
 				int gameKey = e.getKeyCode();
 //				System.out.println(gameKey); //Testy
 				if(gameKey == upKey){
-					mapCSS.rocket.setVy(mapCSS.rocket.getVy() + 1);
+					mapCSS.rocket.setVx(mapCSS.rocket.getVx() + mapCSS.rocket.getdV()*Math.cos(mapCSS.rocket.getAngle()*Math.PI/180));
+					mapCSS.rocket.setVy(mapCSS.rocket.getVy() + mapCSS.rocket.getdV()*Math.sin(mapCSS.rocket.getAngle()*Math.PI/180));
 					if(yLoc < 0)
 						yLoc = 0;
 					repaint();
 					}
 				if(gameKey == downKey){
-					mapCSS.rocket.setVy(mapCSS.rocket.getVy() - 1);
+					mapCSS.rocket.setVy(mapCSS.rocket.getVy() - mapCSS.rocket.getdV()*Math.cos(mapCSS.rocket.getAngle()));
+					mapCSS.rocket.setVy(mapCSS.rocket.getVy() - mapCSS.rocket.getdV()*Math.sin(mapCSS.rocket.getAngle()));
 					if(yLoc > frame.dimension.height)
 						yLoc = frame.dimension.height;
 					repaint();
 					}
 				if(gameKey == leftKey){
-					mapCSS.rocket.setVx(mapCSS.rocket.getVx() - 1);
+					mapCSS.rocket.setvAngle(mapCSS.rocket.getvAngle() + mapCSS.rocket.getdVAngle());
 					if(xLoc < 0)
 						xLoc = 0;
 					repaint();
 					}
 				if(gameKey == rightKey){
-					mapCSS.rocket.setVx(mapCSS.rocket.getVx() + 1);
+					mapCSS.rocket.setvAngle(mapCSS.rocket.getvAngle() - mapCSS.rocket.getdVAngle());
 					if(xLoc > frame.dimension.width)
 						xLoc = frame.dimension.width;
 					repaint();
@@ -85,12 +85,10 @@ public class GamePanel extends JPanel implements Runnable{
 
 	public GamePanel(boolean isDoubleBuffered) {
 		super(isDoubleBuffered);
-		// TODO Auto-generated constructor stub
 	}
 
 	public GamePanel(LayoutManager layout, boolean isDoubleBuffered) {
 		super(layout, isDoubleBuffered);
-		// TODO Auto-generated constructor stub
 	}
 	
 
@@ -126,6 +124,7 @@ public class GamePanel extends JPanel implements Runnable{
 			mapCSS.planets.get(3).setY(mapCSS.centerY+mapCSS.rY.get(3)*Math.sin(mapCSS.fi.get(3)*Math.PI/180));
 //			mapCSS.rocket.setX(mapCSS.rocket.getX()-h*mapCSS.rocket.getVx());
 //			mapCSS.rocket.setY(mapCSS.rocket.getY()-h*mapCSS.rocket.getVy());
+			mapCSS.rocket.setAngle(mapCSS.rocket.getAngle() + mapCSS.rocket.getvAngle());
 			repaint();
 		}
 

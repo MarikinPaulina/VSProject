@@ -5,6 +5,9 @@ public class Rocket extends Body {
 	protected double width;
 	protected double height;
 	protected double angle;
+	protected double vAngle;
+	protected double dVAngle;
+	protected double dV;
 	
 	public Rocket(double x, double y, double vx, double vy, double mass, double angle,double vAngle, 
 			double width, double height)
@@ -12,6 +15,8 @@ public class Rocket extends Body {
 		super(x, y, vx, vy, mass, angle, vAngle);
 		this.height = height;
 		this.width = width;
+		this.dV = 1;
+		this.dVAngle = 1;
 	}
 	
 	public double getWidth() {
@@ -46,6 +51,30 @@ public class Rocket extends Body {
 
 	public void setAngle(double angle) {
 		this.angle = angle;
+	}
+
+	public double getvAngle() {
+		return vAngle;
+	}
+
+	public void setvAngle(double vAngle) {
+		this.vAngle = vAngle;
+	}
+
+	public double getdVAngle() {
+		return dVAngle;
+	}
+
+	public void setdVAngle(double dVAngle) {
+		this.dVAngle = dVAngle;
+	}
+
+	public double getdV() {
+		return dV;
+	}
+
+	public void setdV(double dV) {
+		this.dV = dV;
 	}
 	
 	
