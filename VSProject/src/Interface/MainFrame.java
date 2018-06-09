@@ -44,7 +44,7 @@ public class MainFrame extends JFrame {
 		dimension =	new Dimension(back.getWidth(), back.getHeight());
 		setPreferredSize(dimension);
 //		Ustawianie paneli i layoutu
-		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		this.setSize(dimension);
 		final MainFrame frame = this;
 		frame.add(mainP);
