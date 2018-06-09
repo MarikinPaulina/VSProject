@@ -1,8 +1,6 @@
 package Simulation;
 //Wykonanie: Paulina Marikin
 public class Planet extends Body {
-
-	protected double radius;
 	
 	public Planet(double x, double y, double vx, double vy, double mass, double angle,double vAngle, double r)
 	{

@@ -14,6 +14,7 @@ public class Body
 	protected double dy;
 	protected double dvx;
 	protected double dvy;
+	protected double radius;
 	
 	public Body(double x, double y, double vx, double vy, double mass,double angle,double vAngle)
 	{
@@ -125,6 +126,14 @@ public class Body
 
 	public void setDvy(double dvy) {
 		this.dvy = dvy;
+	}
+
+	public double getRadius() {
+		return radius;
+	}
+
+	public void setRadius(double radius) {
+		this.radius = radius;
 	}
 
 	

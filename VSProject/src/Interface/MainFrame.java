@@ -84,29 +84,29 @@ public class MainFrame extends JFrame {
 				frame.setVisible(true);
 				
 				final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(2);
-				final ScheduledFuture<?> sc1 = scheduler.scheduleAtFixedRate(frame.gameP, 0, 5, TimeUnit.MILLISECONDS);
+				final ScheduledFuture<?> sc1 = scheduler.scheduleAtFixedRate(frame.gameP, 0, 1, TimeUnit.MILLISECONDS);
 				
 			}
 		});
 
 ////		Testy
 //		
-		int n = 900;
-		double sunMass = 100;
-		Body sun = new Body(0,0,0,20,sunMass,0,0);
-		Body planet = new Body(100,0,0,1,2,0,0);
-		Rocket rocket = new Rocket(600,400,0,0,0.5,0,0,2,5);
-		ArrayList<Body> testA = new ArrayList<Body>();
-		testA.add(planet);
-		testA.add(rocket);
-		ArrayList<Body> testB = new ArrayList<Body>();
-		testB.add(sun);
-//		System.out.println(planet.getX()+","+planet.getY()); 
-		for(int i=0;i<n;i++)
-		{
-			RungeKutta4.step(testA, testB, 1);
-//			System.out.println(planet.getX()+","+planet.getY());
-		}
+//		int n = 900;
+//		double sunMass = 100;
+//		Body sun = new Body(-100,0,0,0,sunMass,0,0);
+//		Body planet = new Body(100,0,0,0,sunMass,0,0);
+//		Rocket rocket = new Rocket(600,400,0,0,0.5,0,0,2,5);
+//		ArrayList<Body> testA = new ArrayList<Body>();
+//		testA.add(planet);
+//		testA.add(sun);
+//		ArrayList<Body> testB = new ArrayList<Body>();
+////		testB.add(sun);
+////		System.out.println(planet.getX()+","+planet.getY()); 
+//		for(int i=0;i<n;i++)
+//		{
+//			RungeKutta4.step(testA, testB, 1);
+////			System.out.println(planet.getX()+","+planet.getY());
+//		}
 //		
 ////		
 		

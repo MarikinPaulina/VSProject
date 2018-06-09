@@ -112,16 +112,8 @@ public class GamePanel extends JPanel implements Runnable{
 	public void run() {
 		if(isVisible==true)
 		{
-//			RungeKutta4.step(mapCSS.targets, mapCSS.sources, h);
-			mapCSS.fi.set(1,mapCSS.fi.get(1)+mapCSS.dfi.get(1));
-			mapCSS.fi.set(2,mapCSS.fi.get(2)+mapCSS.dfi.get(2));
-			mapCSS.fi.set(3,mapCSS.fi.get(3)+mapCSS.dfi.get(3));
-			mapCSS.planets.get(1).setX(mapCSS.centerX+mapCSS.rX.get(1)*Math.cos(mapCSS.fi.get(1)*Math.PI/180));
-			mapCSS.planets.get(1).setY(mapCSS.centerY+mapCSS.rY.get(1)*Math.sin(mapCSS.fi.get(1)*Math.PI/180));
-			mapCSS.planets.get(2).setX(mapCSS.centerX+mapCSS.rX.get(2)*Math.cos(mapCSS.fi.get(2)*Math.PI/180));
-			mapCSS.planets.get(2).setY(mapCSS.centerY+mapCSS.rY.get(2)*Math.sin(mapCSS.fi.get(2)*Math.PI/180));
-			mapCSS.planets.get(3).setX(mapCSS.centerX+mapCSS.rX.get(3)*Math.cos(mapCSS.fi.get(3)*Math.PI/180));
-			mapCSS.planets.get(3).setY(mapCSS.centerY+mapCSS.rY.get(3)*Math.sin(mapCSS.fi.get(3)*Math.PI/180));
+			RungeKutta4.step(mapCSS.targets, mapCSS.sources, h);
+			
 //			mapCSS.rocket.setX(mapCSS.rocket.getX()-h*mapCSS.rocket.getVx());
 //			mapCSS.rocket.setY(mapCSS.rocket.getY()-h*mapCSS.rocket.getVy());
 			mapCSS.rocket.setAngle(mapCSS.rocket.getAngle() + mapCSS.rocket.getvAngle());

@@ -37,6 +37,22 @@ public class RungeKutta4 {
 			target.setDvx(0);
 			target.setDvy(0);
 		}
+		for (Body b1 : buffers)
+		{
+			buffers.remove(b1);
+			if(b1 instanceof Rocket){}
+			else
+			{
+				for(Body b2 : buffers)
+				{
+					if(b2 instanceof Rocket)
+						buffers.remove(b2);
+					else
+						Collisions.PvP(b1, b2);
+				}
+			}
+		}
+		
 		System.out.println();
 	}
 	
