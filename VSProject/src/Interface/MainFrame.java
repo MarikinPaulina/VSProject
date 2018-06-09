@@ -77,38 +77,38 @@ public class MainFrame extends JFrame {
 	Dimension dimension;
 	
 	public static void main(String[] args) {
-//		SwingUtilities.invokeLater(new Runnable() {
-//
-//			public void run() {
-//				MainFrame frame = new MainFrame("VSProject");
-//				frame.setVisible(true);
-//				
-//				final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(2);
-//				final ScheduledFuture<?> sc1 = scheduler.scheduleAtFixedRate(frame.gameP, 0, 1, TimeUnit.MILLISECONDS);
-//				
-//			}
-//		});
+		SwingUtilities.invokeLater(new Runnable() {
+
+			public void run() {
+				MainFrame frame = new MainFrame("VSProject");
+				frame.setVisible(true);
+				
+				final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(2);
+				final ScheduledFuture<?> sc1 = scheduler.scheduleAtFixedRate(frame.gameP, 0, 1, TimeUnit.MILLISECONDS);
+				
+			}
+		});
 
 ////		Testy
 //		
-		int n = 900;
-		double sunMass = 100;
-		Body sun = new Body(-100,0,10,0,sunMass,0,20);
-		Body planet = new Body(100,0,-10,0,sunMass,0,20);
-		Rocket rocket = new Rocket(600,400,0,0,0.5,0,0,2,5);
-		ArrayList<Body> testA = new ArrayList<Body>();
-		testA.add(planet);
-		testA.add(sun);
-		ArrayList<Body> testB = new ArrayList<Body>();
-//		testB.add(sun);
-//		System.out.println(planet.getX()+","+planet.getY()); 
-		for(int i=0;i<n;i++)
-		{
-			RungeKutta4.step(testA, testB, 1);
-//			Collisions.PvP(sun, planet);
-//			System.out.println(planet.getX()+","+planet.getY());
-		}
-		System.out.println("Koniec");
+//		int n = 900;
+//		double sunMass = 100;
+//		Body sun = new Body(-100,0,10,0,sunMass,0,20);
+//		Body planet = new Body(100,0,-10,0,sunMass,0,20);
+//		Rocket rocket = new Rocket(600,400,0,0,0.5,0,0,2,5);
+//		ArrayList<Body> testA = new ArrayList<Body>();
+//		testA.add(planet);
+//		testA.add(sun);
+//		ArrayList<Body> testB = new ArrayList<Body>();
+////		testB.add(sun);
+////		System.out.println(planet.getX()+","+planet.getY()); 
+//		for(int i=0;i<n;i++)
+//		{
+//			RungeKutta4.step(testA, testB, 1);
+////			Collisions.PvP(sun, planet);
+////			System.out.println(planet.getX()+","+planet.getY());
+//		}
+//		System.out.println("Koniec");
 //		
 ////		
 		

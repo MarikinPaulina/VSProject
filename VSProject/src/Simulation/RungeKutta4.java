@@ -18,6 +18,23 @@ public class RungeKutta4 {
 		buffers.addAll(sources);
 		buffers.addAll(targets);
 //		System.out.println(buffers.size()); //Testy
+
+//		for (Body b1 : buffers)
+//		{
+//			buffers.remove(b1);
+//			if(b1 instanceof Rocket){}
+//			else
+//			{
+//				for(Body b2 : buffers)
+//				{
+//					if(b2 instanceof Rocket)
+//						buffers.remove(b2);
+//					else
+//						Collisions.PvP(b1, b2,h);
+//				}
+//			}
+//		}
+		
 		for (Body target : targets)
 		{
 			Body buffer = new Body(target);
@@ -36,21 +53,6 @@ public class RungeKutta4 {
 			target.setDy(0);
 			target.setDvx(0);
 			target.setDvy(0);
-		}
-		for (Body b1 : buffers)
-		{
-			buffers.remove(b1);
-			if(b1 instanceof Rocket){}
-			else
-			{
-				for(Body b2 : buffers)
-				{
-					if(b2 instanceof Rocket)
-						buffers.remove(b2);
-					else
-						Collisions.PvP(b1, b2);
-				}
-			}
 		}
 		
 		System.out.println();
