@@ -77,17 +77,17 @@ public class MainFrame extends JFrame {
 	Dimension dimension;
 	
 	public static void main(String[] args) {
-//		SwingUtilities.invokeLater(new Runnable() {
-//
-//			public void run() {
-//				MainFrame frame = new MainFrame("VSProject");
-//				frame.setVisible(true);
-//				
-//				final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(2);
-//				final ScheduledFuture<?> sc1 = scheduler.scheduleAtFixedRate(frame.gameP, 0, 5, TimeUnit.MILLISECONDS);
-//				
-//			}
-//		});
+		SwingUtilities.invokeLater(new Runnable() {
+
+			public void run() {
+				MainFrame frame = new MainFrame("VSProject");
+				frame.setVisible(true);
+				
+				final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(2);
+				final ScheduledFuture<?> sc1 = scheduler.scheduleAtFixedRate(frame.gameP, 0, 5, TimeUnit.MILLISECONDS);
+				
+			}
+		});
 
 ////		Testy
 //		
@@ -98,6 +98,7 @@ public class MainFrame extends JFrame {
 		Rocket rocket = new Rocket(600,400,0,0,0.5,0,0,2,5);
 		ArrayList<Body> testA = new ArrayList<Body>();
 		testA.add(planet);
+		testA.add(rocket);
 		ArrayList<Body> testB = new ArrayList<Body>();
 		testB.add(sun);
 //		System.out.println(planet.getX()+","+planet.getY()); 
