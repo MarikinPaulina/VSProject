@@ -8,7 +8,7 @@ public class RungeKutta4 {
 	double[] K2;
 	double[] K3;
 	double[] K4;
-	public static final double G = 6.674*Math.pow(10, -1);
+	public static final double G = 6.674*Math.pow(10, -2);
 	
 	
 	
