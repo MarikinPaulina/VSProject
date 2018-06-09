@@ -118,6 +118,7 @@ public class GamePanel extends JPanel implements Runnable{
 //			mapCSS.rocket.setY(mapCSS.rocket.getY()-h*mapCSS.rocket.getVy());
 			mapCSS.rocket.setAngle(mapCSS.rocket.getAngle() + mapCSS.rocket.getvAngle());
 			repaint();
+			System.out.println("Raz");
 		}
 
 	}
