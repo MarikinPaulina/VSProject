@@ -1,4 +1,7 @@
 package Simulation;
+
+import java.awt.*;
+
 //Wykonanie: Paulina Marikin
 public class Body 
 {
@@ -8,23 +11,19 @@ public class Body
 	protected double y;
 	protected double vX;
 	protected double vY;
-	protected double angle;
-	protected double vAngle;
 	protected double dx;
 	protected double dy;
 	protected double dvx;
 	protected double dvy;
 	protected double radius;
 	
-	public Body(double x, double y, double vx, double vy, double mass,double angle,double vAngle)
+	public Body(double x, double y, double vx, double vy, double mass)
 	{
 		this.x = x;
 		this.y = y;
 		this.vX = vx;
 		this.vY = vy;
 		this.mass = mass;
-		this.angle = angle;
-		this.vAngle = vAngle;
 	}
 	
 	public Body(Body body)
@@ -34,8 +33,6 @@ public class Body
 		this.vX = body.vX;
 		this.vY = body.vY;
 		this.mass = body.mass;
-		this.angle = body.angle;
-		this.vAngle = body.vAngle;
 	}
 	
 	public double getMass() 
@@ -80,22 +77,6 @@ public class Body
 		this.vY = vy;
 	}
 
-	public double getAngle() {
-		return angle;
-	}
-
-	public void setAngle(double angle) {
-		this.angle = angle;
-	}
-
-	public double getvAngle() {
-		return vAngle;
-	}
-
-	public void setvAngle(double vAngle) {
-		this.vAngle = vAngle;
-	}
-
 	public double getDx() {
 		return dx;
 	}
@@ -136,7 +117,9 @@ public class Body
 		this.radius = radius;
 	}
 
-	
-	
-	
+	public  void drawPlanet(Graphics2D g2d)
+	{
+		g2d.fillOval((int) (x-radius), (int) (y-radius), (int) (radius * 2), (int) (radius * 2));
+		g2d.setColor(Color.LIGHT_GRAY);
+	}
 }

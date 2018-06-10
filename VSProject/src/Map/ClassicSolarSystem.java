@@ -40,8 +40,8 @@ public class ClassicSolarSystem extends Map{
 		targets.add(planet1);
 		targets.add(planet2);
 		targets.add(planet3);
-		
-		rocket = new Rocket(planet1.getX(),planet1.getY()-planet1.getRadius(),0,0,0.005,0,0,2,5);
+
+		rocket = new Rocket(planet1.getX(),planet1.getY()-planet1.getRadius(),planet1.getVx(),planet1.getVy(),0.005,45,0,15,30);
 		targets.add(rocket);
 	}
 
@@ -50,16 +50,10 @@ public class ClassicSolarSystem extends Map{
 //		g2d.fillRect(200, 200, 200, 200); //Test
 		for (Planet planet : planets)
 		{
-			g2d.fillOval((int) (planet.getX()-planet.getRadius()), (int) (planet.getY()-planet.getRadius()), 
-					(int) (planet.getRadius() * 2), (int) (planet.getRadius() * 2));
-			g2d.setColor(Color.LIGHT_GRAY);
+			planet.drawPlanet(g2d);
 		}
-		
-		g2d.setColor(Color.red);
-		g2d.fillRect((int) (rocket.getX()-rocket.getHalfWidth()), (int) (rocket.getY()-rocket.getHalfHeight()),
-				(int) rocket.getWidth(), (int) rocket.getHeight());
-		
 
+		rocket.drawRocket(g2d);
 	}
 	
 }

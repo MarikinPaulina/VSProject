@@ -1,4 +1,7 @@
 package Simulation;
+
+import java.awt.*;
+
 //Wykonanie: Paulina Marikin
 public class Rocket extends Body {
 
@@ -12,7 +15,9 @@ public class Rocket extends Body {
 	public Rocket(double x, double y, double vx, double vy, double mass, double angle,double vAngle, 
 			double width, double height)
 	{
-		super(x, y, vx, vy, mass, angle, vAngle);
+		super(x, y, vx, vy, mass);
+        this.angle = angle;
+        this.vAngle = vAngle;
 		this.height = height;
 		this.width = width;
 		this.dV = 1;
@@ -80,6 +85,19 @@ public class Rocket extends Body {
 	public void setdV(double dV) {
 		this.dV = dV;
 	}
-	
+
+	public void drawRocket(Graphics2D graphics2D)
+	{
+		double xAlongL = height / 2 * Math.cos(angle);
+		double yAlongL = height / 2 * Math.sin(angle);
+		double xAlongW = width / 2 * Math.sin(angle);
+		double yAlongW = width / 2 * Math.cos(angle);
+
+		int xTable[] = {(int)(x + xAlongL), (int)(x - xAlongL - xAlongW), (int)(x - xAlongL/2), (int)(x - xAlongL + xAlongW)};
+		int yTable[] = {(int)(y + yAlongL), (int)(y - yAlongL - yAlongW), (int)(y - yAlongL/2), (int)(y - yAlongL + yAlongW)};
+
+		graphics2D.setColor(Color.blue);
+		graphics2D.fillPolygon(xTable, yTable, 4);
+	}
 	
 }

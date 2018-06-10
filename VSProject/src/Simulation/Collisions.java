@@ -3,7 +3,8 @@ package Simulation;
 public class Collisions {
 
 	//	https://physics.stackexchange.com/questions/107648/what-are-the-general-solutions-to-a-hard-sphere-collision
-	
+
+	public static double COLLISION_THRESHOLD = 0.1;
 	public Collisions() {}
 
 	public static double impactTime(Body p1, Body p2)
@@ -31,31 +32,39 @@ public class Collisions {
 			System.out.println("KOLIZJAAAAAAAAAAAAAAAAAAAAAAAAAA" + t);
 			double dvx = p1.getVx() - p2.getVx();
 			double dvy = p1.getVy() - p2.getVy();
-			double jx = dx + dvx*t;
-			double jy = dy + dvy*t;
-			double jabs = Math.sqrt(jx * jx + jy * jy);
-			jx /= jabs;
-			jy /= jabs;
-			
-			double J = 2 *(jx*dvx + jy*dvy) / (1/p1.getMass() + 1/p2.getMass());
-			
-			p1.setVx(p1.getVx() + J*jx/p1.getMass());
-			p1.setVy(p1.getVy() + J*jy/p1.getMass());
-			p2.setVx(p2.getVx() - J*jx/p2.getMass());
-			p2.setVy(p2.getVy() - J*jy/p2.getMass());	
+
+			if (p1 instanceof Body && p2  instanceof Body)
+			{
+				double jx = dx + dvx*t;
+				double jy = dy + dvy*t;
+				double jabs = Math.sqrt(jx * jx + jy * jy);
+				jx /= jabs;
+				jy /= jabs;
+
+				double J = 2 *(jx*dvx + jy*dvy) / (1/p1.getMass() + 1/p2.getMass());
+
+				p1.setVx(p1.getVx() + J*jx/p1.getMass());
+				p1.setVy(p1.getVy() + J*jy/p1.getMass());
+				p2.setVx(p2.getVx() - J*jx/p2.getMass());
+				p2.setVy(p2.getVy() - J*jy/p2.getMass());
+			}
+			else
+			{
+				double magnitude_velocity_difference = Math.sqrt(dvx * dvx + dvy * dvy);
+				if (magnitude_velocity_difference <= COLLISION_THRESHOLD)
+				{
+					if (p1 instanceof Rocket)
+					{
+						p1.setVx(p2.getVx());
+						p1.setVy(p2.getVy());
+					}
+					else if (p2 instanceof Rocket)
+					{
+						p2.setVx(p1.getVx());
+						p2.setVy(p1.getVy());
+					}
+				}
+			}
 		}
 	}
-	
-	public static void RvP(Rocket r, Planet p)
-	{
-		double dx = p.getX() - r.getX();
-		double dy = p.getY() - r.getY();
-		double radius = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
-		
-		if(radius < (p.getRadius()));
-		{
-			
-		}
-	}
-	
 }

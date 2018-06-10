@@ -27,6 +27,7 @@ public class GamePanel extends JPanel implements Runnable{
 	int downKey = KeyEvent.VK_DOWN;
 	int leftKey = KeyEvent.VK_LEFT;
 	int rightKey = KeyEvent.VK_LEFT;
+	int rKey = KeyEvent.VK_R;
 	double h = 0.1;
 	ClassicSolarSystem mapCSS;
 	
@@ -55,27 +56,28 @@ public class GamePanel extends JPanel implements Runnable{
 					mapCSS.rocket.setVy(mapCSS.rocket.getVy() + mapCSS.rocket.getdV()*Math.sin(mapCSS.rocket.getAngle()*Math.PI/180));
 					if(yLoc < 0)
 						yLoc = 0;
-					repaint();
+//					repaint();
 					}
 				if(gameKey == downKey){
-					mapCSS.rocket.setVy(mapCSS.rocket.getVy() - mapCSS.rocket.getdV()*Math.cos(mapCSS.rocket.getAngle()));
+					mapCSS.rocket.setVx(mapCSS.rocket.getVx() - mapCSS.rocket.getdV()*Math.cos(mapCSS.rocket.getAngle()));
 					mapCSS.rocket.setVy(mapCSS.rocket.getVy() - mapCSS.rocket.getdV()*Math.sin(mapCSS.rocket.getAngle()));
 					if(yLoc > frame.dimension.height)
 						yLoc = frame.dimension.height;
-					repaint();
+//					repaint();
 					}
 				if(gameKey == leftKey){
 					mapCSS.rocket.setvAngle(mapCSS.rocket.getvAngle() + mapCSS.rocket.getdVAngle());
 					if(xLoc < 0)
 						xLoc = 0;
-					repaint();
+//					repaint();
 					}
-				if(gameKey == rightKey){
+				if(gameKey == rightKey) {
 					mapCSS.rocket.setvAngle(mapCSS.rocket.getvAngle() - mapCSS.rocket.getdVAngle());
-					if(xLoc > frame.dimension.width)
+					if (xLoc > frame.dimension.width)
 						xLoc = frame.dimension.width;
-					repaint();
-					}
+//					repaint();
+				}
+
 			}
 			public void keyReleased(KeyEvent e) {}
 
@@ -114,11 +116,8 @@ public class GamePanel extends JPanel implements Runnable{
 		{
 			RungeKutta4.step(mapCSS.targets, mapCSS.sources, h);
 			
-//			mapCSS.rocket.setX(mapCSS.rocket.getX()-h*mapCSS.rocket.getVx());
-//			mapCSS.rocket.setY(mapCSS.rocket.getY()-h*mapCSS.rocket.getVy());
-			mapCSS.rocket.setAngle(mapCSS.rocket.getAngle() + mapCSS.rocket.getvAngle());
+			mapCSS.rocket.setAngle(mapCSS.rocket.getAngle() + mapCSS.rocket.getvAngle() * h);
 			repaint();
-			System.out.println("Raz");
 		}
 
 	}
