@@ -47,22 +47,46 @@ public class MyGlassPanel extends JComponent  {
 			public void keyReleased(KeyEvent e) {
 				String key = KeyEvent.getKeyText(e.getKeyCode());
 				System.out.println("Released " + key);
-				if(key == "Escape")
+				if(frame.gameP.isVisible == true)
 				{
-					if(frame.gameP.isVisible == true)
+					if(key == "Escape")
 					{
-						System.out.println(key); //Test
-						if(isVisible == false)
+						if (isVisible == false)
 						{
 							isVisible = true;
 							setVisible(true);
 						}
 						else
 						{
-							isVisible = false;
-							setVisible(false);
+						isVisible = false;
+						setVisible(false);
 						}
 					}
+//					else if(key == upKey){
+//						mapCSS.rocket.setVx(mapCSS.rocket.getVx() + mapCSS.rocket.getdV()*Math.cos(mapCSS.rocket.getAngle()*Math.PI/180));
+//						mapCSS.rocket.setVy(mapCSS.rocket.getVy() + mapCSS.rocket.getdV()*Math.sin(mapCSS.rocket.getAngle()*Math.PI/180));
+//						if(yLoc < 0)
+//							yLoc = 0;
+////					repaint();
+//					}
+//					else if(key == downKey){
+//						mapCSS.rocket.setVx(mapCSS.rocket.getVx() - mapCSS.rocket.getdV()*Math.cos(mapCSS.rocket.getAngle()));
+//						mapCSS.rocket.setVy(mapCSS.rocket.getVy() - mapCSS.rocket.getdV()*Math.sin(mapCSS.rocket.getAngle()));
+//						if(yLoc > frame.dimension.height)
+//							yLoc = frame.dimension.height;
+////					repaint();
+//					}
+//					else if(key == "Left"){
+//						mapCSS.rocket.setvAngle(mapCSS.rocket.getvAngle() + mapCSS.rocket.getdVAngle());
+//						if(xLoc < 0)
+//							xLoc = 0;
+//					}
+//					else if(key == rightKey) {
+//						mapCSS.rocket.setvAngle(mapCSS.rocket.getvAngle() - mapCSS.rocket.getdVAngle());
+//						if (xLoc > frame.dimension.width)
+//							xLoc = frame.dimension.width;
+//					}
+//				}
 					
 				}
 				

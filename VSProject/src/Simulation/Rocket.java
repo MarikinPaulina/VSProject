@@ -21,7 +21,7 @@ public class Rocket extends Body {
 		this.height = height;
 		this.width = width;
 		this.dV = 1;
-		this.dVAngle = 1;
+		this.dVAngle = 5;
 		if(height > width)
 			radius = height/2;
 		else
@@ -88,16 +88,23 @@ public class Rocket extends Body {
 
 	public void drawRocket(Graphics2D graphics2D)
 	{
-		double xAlongL = height / 2 * Math.cos(angle);
-		double yAlongL = height / 2 * Math.sin(angle);
-		double xAlongW = width / 2 * Math.sin(angle);
-		double yAlongW = width / 2 * Math.cos(angle);
+		double xAlongL = height / 2 * Math.cos(Math.toRadians(angle));
+		double yAlongL = height / 2 * Math.sin(Math.toRadians(angle));
+		double wingAngle = 150;
+		double wingL = Math.sqrt(Math.pow(height/2,2) + Math.pow(width/2,2));
 
-		int xTable[] = {(int)(x + xAlongL), (int)(x - xAlongL - xAlongW), (int)(x - xAlongL/2), (int)(x - xAlongL + xAlongW)};
-		int yTable[] = {(int)(y + yAlongL), (int)(y - yAlongL - yAlongW), (int)(y - yAlongL/2), (int)(y - yAlongL + yAlongW)};
+		int xTable[] = {(int)(x + xAlongL), (int)(x + wingL * Math.cos(Math.toRadians(angle + wingAngle))),
+				(int)(x), (int)(x + wingL * Math.cos(Math.toRadians(angle - wingAngle)))};
+		int yTable[] = {(int)(y - yAlongL), (int)(y - wingL * Math.sin(Math.toRadians(angle + wingAngle))),
+				(int)(y), (int)(y - wingL * Math.sin(Math.toRadians(angle - wingAngle)))};
 
 		graphics2D.setColor(Color.blue);
 		graphics2D.fillPolygon(xTable, yTable, 4);
+		graphics2D.setColor(Color.red);
+		for(int a = 0;a<4;a++)
+		{
+			graphics2D.fillOval(xTable[a],yTable[a],2,2);
+		}
 	}
 	
 }

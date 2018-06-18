@@ -41,7 +41,7 @@ public class ClassicSolarSystem extends Map{
 		targets.add(planet2);
 		targets.add(planet3);
 
-		rocket = new Rocket(planet1.getX(),planet1.getY()-planet1.getRadius(),planet1.getVx(),planet1.getVy(),0.005,45,0,15,30);
+		rocket = new Rocket(planet1.getX(),planet1.getY()-planet1.getRadius(),0,0,0.005,120,0,10,30);
 		targets.add(rocket);
 	}
 

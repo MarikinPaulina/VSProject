@@ -22,19 +22,18 @@ public class Collisions {
 	
 	public static void PvP(Body p1, Body p2, double h)
 	{
-		double dx = p1.getX() - p2.getX();
-		double dy = p1.getY() - p2.getY();
-		double r = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
-
 		double t = impactTime(p1,p2);
 		if((0 <= t) && ( t < h))
 		{
-			System.out.println("KOLIZJAAAAAAAAAAAAAAAAAAAAAAAAAA" + t);
+			System.out.println("KOLIZJAAAAAAAAAAAAAAAAAAAAAAAAAA " + t);
+			double dx = p1.getX() - p2.getX();
+			double dy = p1.getY() - p2.getY();
 			double dvx = p1.getVx() - p2.getVx();
 			double dvy = p1.getVy() - p2.getVy();
 
-			if (p1 instanceof Body && p2  instanceof Body)
+			if ((p1 instanceof Planet) && (p2  instanceof Planet))
 			{
+				System.out.println("wow, planety");
 				double jx = dx + dvx*t;
 				double jy = dy + dvy*t;
 				double jabs = Math.sqrt(jx * jx + jy * jy);
@@ -43,13 +42,14 @@ public class Collisions {
 
 				double J = 2 *(jx*dvx + jy*dvy) / (1/p1.getMass() + 1/p2.getMass());
 
-				p1.setVx(p1.getVx() + J*jx/p1.getMass());
-				p1.setVy(p1.getVy() + J*jy/p1.getMass());
-				p2.setVx(p2.getVx() - J*jx/p2.getMass());
-				p2.setVy(p2.getVy() - J*jy/p2.getMass());
+				p1.setVx(p1.getVx() - J*jx/p1.getMass());
+				p1.setVy(p1.getVy() - J*jy/p1.getMass());
+				p2.setVx(p2.getVx() + J*jx/p2.getMass());
+				p2.setVy(p2.getVy() + J*jy/p2.getMass());
 			}
 			else
 			{
+				System.out.println("Rakieta w niebezpieczeństwie!");
 				double magnitude_velocity_difference = Math.sqrt(dvx * dvx + dvy * dvy);
 				if (magnitude_velocity_difference <= COLLISION_THRESHOLD)
 				{

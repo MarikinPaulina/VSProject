@@ -84,7 +84,7 @@ public class MainFrame extends JFrame {
 				frame.setVisible(true);
 				
 				final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(2);
-				final ScheduledFuture<?> sc1 = scheduler.scheduleAtFixedRate(frame.gameP, 0, 2, TimeUnit.MILLISECONDS);
+				final ScheduledFuture<?> sc1 = scheduler.scheduleAtFixedRate(frame.gameP, 0, 1, TimeUnit.MILLISECONDS);
 				
 			}
 		});

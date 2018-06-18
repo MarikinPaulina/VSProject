@@ -69,13 +69,11 @@ public class GamePanel extends JPanel implements Runnable{
 					mapCSS.rocket.setvAngle(mapCSS.rocket.getvAngle() + mapCSS.rocket.getdVAngle());
 					if(xLoc < 0)
 						xLoc = 0;
-//					repaint();
 					}
 				if(gameKey == rightKey) {
 					mapCSS.rocket.setvAngle(mapCSS.rocket.getvAngle() - mapCSS.rocket.getdVAngle());
 					if (xLoc > frame.dimension.width)
 						xLoc = frame.dimension.width;
-//					repaint();
 				}
 
 			}
@@ -116,7 +114,7 @@ public class GamePanel extends JPanel implements Runnable{
 		{
 			RungeKutta4.step(mapCSS.targets, mapCSS.sources, h);
 			
-			mapCSS.rocket.setAngle(mapCSS.rocket.getAngle() + mapCSS.rocket.getvAngle() * h);
+			mapCSS.rocket.setAngle(mapCSS.rocket.getAngle() + mapCSS.rocket.getvAngle());
 			repaint();
 		}
 
