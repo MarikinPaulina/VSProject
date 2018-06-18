@@ -62,30 +62,32 @@ public class MyGlassPanel extends JComponent  {
 						setVisible(false);
 						}
 					}
-//					else if(key == upKey){
-//						mapCSS.rocket.setVx(mapCSS.rocket.getVx() + mapCSS.rocket.getdV()*Math.cos(mapCSS.rocket.getAngle()*Math.PI/180));
-//						mapCSS.rocket.setVy(mapCSS.rocket.getVy() + mapCSS.rocket.getdV()*Math.sin(mapCSS.rocket.getAngle()*Math.PI/180));
+					else if(key == "Up"){
+						frame.gameP.mapCSS.rocket.setVx(frame.gameP.mapCSS.rocket.getVx()
+								+ frame.gameP.mapCSS.rocket.getdV()*Math.cos(Math.toRadians(frame.gameP.mapCSS.rocket.getAngle())));
+						frame.gameP.mapCSS.rocket.setVy(frame.gameP.mapCSS.rocket.getVy()
+								- frame.gameP.mapCSS.rocket.getdV()*Math.sin(Math.toRadians(frame.gameP.mapCSS.rocket.getAngle())));
 //						if(yLoc < 0)
 //							yLoc = 0;
-////					repaint();
-//					}
-//					else if(key == downKey){
-//						mapCSS.rocket.setVx(mapCSS.rocket.getVx() - mapCSS.rocket.getdV()*Math.cos(mapCSS.rocket.getAngle()));
-//						mapCSS.rocket.setVy(mapCSS.rocket.getVy() - mapCSS.rocket.getdV()*Math.sin(mapCSS.rocket.getAngle()));
+					}
+					else if(key == "Down"){
+						frame.gameP.mapCSS.rocket.setVx(frame.gameP.mapCSS.rocket.getVx()
+								- frame.gameP.mapCSS.rocket.getdV()*Math.cos(Math.toRadians(frame.gameP.mapCSS.rocket.getAngle())));
+						frame.gameP.mapCSS.rocket.setVy(frame.gameP.mapCSS.rocket.getVy()
+								+ frame.gameP.mapCSS.rocket.getdV()*Math.sin(Math.toRadians(frame.gameP.mapCSS.rocket.getAngle())));
 //						if(yLoc > frame.dimension.height)
 //							yLoc = frame.dimension.height;
-////					repaint();
-//					}
-//					else if(key == "Left"){
-//						mapCSS.rocket.setvAngle(mapCSS.rocket.getvAngle() + mapCSS.rocket.getdVAngle());
+					}
+					else if(key == "Left"){
+						frame.gameP.mapCSS.rocket.setvAngle(frame.gameP.mapCSS.rocket.getvAngle() + frame.gameP.mapCSS.rocket.getdVAngle());
 //						if(xLoc < 0)
 //							xLoc = 0;
-//					}
-//					else if(key == rightKey) {
-//						mapCSS.rocket.setvAngle(mapCSS.rocket.getvAngle() - mapCSS.rocket.getdVAngle());
+					}
+					else if(key == "Right") {
+						frame.gameP.mapCSS.rocket.setvAngle(frame.gameP.mapCSS.rocket.getvAngle() - frame.gameP.mapCSS.rocket.getdVAngle());
 //						if (xLoc > frame.dimension.width)
 //							xLoc = frame.dimension.width;
-//					}
+					}
 //				}
 					
 				}

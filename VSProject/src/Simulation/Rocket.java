@@ -21,7 +21,7 @@ public class Rocket extends Body {
 		this.height = height;
 		this.width = width;
 		this.dV = 1;
-		this.dVAngle = 5;
+		this.dVAngle = 0.2;
 		if(height > width)
 			radius = height/2;
 		else

@@ -51,30 +51,30 @@ public class GamePanel extends JPanel implements Runnable{
 			public void keyPressed(KeyEvent e) {
 				int gameKey = e.getKeyCode();
 //				System.out.println(gameKey); //Testy
-				if(gameKey == upKey){
-					mapCSS.rocket.setVx(mapCSS.rocket.getVx() + mapCSS.rocket.getdV()*Math.cos(mapCSS.rocket.getAngle()*Math.PI/180));
-					mapCSS.rocket.setVy(mapCSS.rocket.getVy() + mapCSS.rocket.getdV()*Math.sin(mapCSS.rocket.getAngle()*Math.PI/180));
-					if(yLoc < 0)
-						yLoc = 0;
-//					repaint();
-					}
-				if(gameKey == downKey){
-					mapCSS.rocket.setVx(mapCSS.rocket.getVx() - mapCSS.rocket.getdV()*Math.cos(mapCSS.rocket.getAngle()));
-					mapCSS.rocket.setVy(mapCSS.rocket.getVy() - mapCSS.rocket.getdV()*Math.sin(mapCSS.rocket.getAngle()));
-					if(yLoc > frame.dimension.height)
-						yLoc = frame.dimension.height;
-//					repaint();
-					}
-				if(gameKey == leftKey){
-					mapCSS.rocket.setvAngle(mapCSS.rocket.getvAngle() + mapCSS.rocket.getdVAngle());
-					if(xLoc < 0)
-						xLoc = 0;
-					}
-				if(gameKey == rightKey) {
-					mapCSS.rocket.setvAngle(mapCSS.rocket.getvAngle() - mapCSS.rocket.getdVAngle());
-					if (xLoc > frame.dimension.width)
-						xLoc = frame.dimension.width;
-				}
+//				if(gameKey == upKey){
+//					mapCSS.rocket.setVx(mapCSS.rocket.getVx() + mapCSS.rocket.getdV()*Math.cos(mapCSS.rocket.getAngle()*Math.PI/180));
+//					mapCSS.rocket.setVy(mapCSS.rocket.getVy() + mapCSS.rocket.getdV()*Math.sin(mapCSS.rocket.getAngle()*Math.PI/180));
+//					if(yLoc < 0)
+//						yLoc = 0;
+////					repaint();
+//					}
+//				if(gameKey == downKey){
+//					mapCSS.rocket.setVx(mapCSS.rocket.getVx() - mapCSS.rocket.getdV()*Math.cos(mapCSS.rocket.getAngle()));
+//					mapCSS.rocket.setVy(mapCSS.rocket.getVy() - mapCSS.rocket.getdV()*Math.sin(mapCSS.rocket.getAngle()));
+//					if(yLoc > frame.dimension.height)
+//						yLoc = frame.dimension.height;
+////					repaint();
+//					}
+//				if(gameKey == leftKey){
+//					mapCSS.rocket.setvAngle(mapCSS.rocket.getvAngle() + mapCSS.rocket.getdVAngle());
+//					if(xLoc < 0)
+//						xLoc = 0;
+//					}
+//				if(gameKey == rightKey) {
+//					mapCSS.rocket.setvAngle(mapCSS.rocket.getvAngle() - mapCSS.rocket.getdVAngle());
+//					if (xLoc > frame.dimension.width)
+//						xLoc = frame.dimension.width;
+//				}
 
 			}
 			public void keyReleased(KeyEvent e) {}
@@ -114,7 +114,7 @@ public class GamePanel extends JPanel implements Runnable{
 		{
 			RungeKutta4.step(mapCSS.targets, mapCSS.sources, h);
 			
-			mapCSS.rocket.setAngle(mapCSS.rocket.getAngle() + mapCSS.rocket.getvAngle());
+			mapCSS.rocket.setAngle(mapCSS.rocket.getAngle() + mapCSS.rocket.getvAngle() * h);
 			repaint();
 		}
 
