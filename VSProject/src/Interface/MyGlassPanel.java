@@ -47,18 +47,7 @@ public class MyGlassPanel extends JComponent  {
 				System.out.println("Released " + key);
 				if(frame.gameP.isVisible == true)
 				{
-					if(frame.gameP.gameOver)
-					{
-						frame.gameP.h = 0;
-						glass.add(overL);
-						glass.add(resetB);
-						glass.add(newB);
-						glass.add(optionsB);
-						glass.add(exitB);
-						isVisible = true;
-						setVisible(true);
-					}
-					else if(key == "Escape")
+					if(key == "Escape")
 					{
 						if (isVisible == false)
 						{

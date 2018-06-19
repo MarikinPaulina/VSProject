@@ -71,7 +71,7 @@ public class MainFrame extends JFrame {
 	public GamePanel gameP = new GamePanel(null,this);
 	CardLayout layout = new CardLayout();
 	JPanel mainP = new JPanel(layout);
-	MyGlassPanel glass = new MyGlassPanel(this);
+	public MyGlassPanel glass = new MyGlassPanel(this);
 	boolean existGame = false;
 	BufferedImage back;
 	public Dimension dimension;
