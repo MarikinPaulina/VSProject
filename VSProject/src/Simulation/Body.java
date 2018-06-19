@@ -16,14 +16,16 @@ public class Body
 	protected double dvx;
 	protected double dvy;
 	protected double radius;
+	public boolean isSun;
 	
-	public Body(double x, double y, double vx, double vy, double mass)
+	public Body(double x, double y, double vx, double vy, double mass,boolean isSun)
 	{
 		this.x = x;
 		this.y = y;
 		this.vX = vx;
 		this.vY = vy;
 		this.mass = mass;
+		this.isSun = isSun;
 	}
 	
 	public Body(Body body)
@@ -33,6 +35,7 @@ public class Body
 		this.vX = body.vX;
 		this.vY = body.vY;
 		this.mass = body.mass;
+		this.isSun = body.isSun;
 	}
 	
 	public double getMass() 
@@ -115,11 +118,5 @@ public class Body
 
 	public void setRadius(double radius) {
 		this.radius = radius;
-	}
-
-	public  void drawPlanet(Graphics2D g2d)
-	{
-		g2d.fillOval((int) (x-radius), (int) (y-radius), (int) (radius * 2), (int) (radius * 2));
-		g2d.setColor(Color.LIGHT_GRAY);
 	}
 }

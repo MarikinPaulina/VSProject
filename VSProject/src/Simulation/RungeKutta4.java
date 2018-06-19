@@ -1,5 +1,7 @@
 package Simulation;
 //Wykonanie: Paulina Marikin
+import Interface.MainFrame;
+
 import java.util.ArrayList;
 
 public class RungeKutta4 {
@@ -12,7 +14,7 @@ public class RungeKutta4 {
 	
 	
 	
-	public static void step(ArrayList<Body> targets, ArrayList<Body> sources, double h)
+	public static void step(ArrayList<Body> targets, ArrayList<Body> sources, double h, MainFrame frame)
 	{
 		ArrayList<Body> buffers = new ArrayList<Body>();
 		buffers.addAll(sources);
@@ -30,7 +32,7 @@ public class RungeKutta4 {
 //					if(b2 instanceof Rocket)
 //						buffers.remove(b2);
 //					else
-						Collisions.PvP(b1, b2,h);
+						Collisions.PvP(b1, b2,h,frame);
 				}
 //			}
 		}

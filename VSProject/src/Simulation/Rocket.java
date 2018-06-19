@@ -13,9 +13,9 @@ public class Rocket extends Body {
 	protected double dV;
 	
 	public Rocket(double x, double y, double vx, double vy, double mass, double angle,double vAngle, 
-			double width, double height)
+			double width, double height,boolean isSun)
 	{
-		super(x, y, vx, vy, mass);
+		super(x, y, vx, vy, mass,isSun);
         this.angle = angle;
         this.vAngle = vAngle;
 		this.height = height;
@@ -90,7 +90,7 @@ public class Rocket extends Body {
 	{
 		double xAlongL = height / 2 * Math.cos(Math.toRadians(angle));
 		double yAlongL = height / 2 * Math.sin(Math.toRadians(angle));
-		double wingAngle = 150;
+		double wingAngle = 180 - Math.toDegrees(Math.atan(width/height));
 		double wingL = Math.sqrt(Math.pow(height/2,2) + Math.pow(width/2,2));
 
 		int xTable[] = {(int)(x + xAlongL), (int)(x + wingL * Math.cos(Math.toRadians(angle + wingAngle))),

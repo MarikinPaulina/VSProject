@@ -1,5 +1,7 @@
 package Interface;
 //Wykonanie: Paulina Marikin
+import Map.ClassicSolarSystem;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GradientPaint;
@@ -22,18 +24,14 @@ public class MyGlassPanel extends JComponent  {
 	public MyGlassPanel(final MainFrame frame) {
 		final MyGlassPanel glass = this;
 		glass.setLayout(null);
-		glass.add(pauzaL);
 		pauzaL.setForeground(Color.white);
 		pauzaL.setBounds(x+75,y,170,30);
-	    glass.add(loadB);
+		overL.setForeground(Color.white);
+		overL.setBounds(x+55,y,170,30);
 	    loadB.setBounds(x+15,y+35,170,30);
-	    glass.add(resetB);
 	    resetB.setBounds(x+15,y+70,170,30);
-	    glass.add(newB);
 	    newB.setBounds(x+15,y+105,170,30);
-	    glass.add(optionsB);
 	    optionsB.setBounds(x+15,y+140,170,30);
-	    glass.add(exitB);
 	    exitB.setBounds(x+15,y+175,170,30);
 		KeyListener glassListener = new KeyListener() {
 			public void keyTyped(KeyEvent e) {
@@ -49,17 +47,42 @@ public class MyGlassPanel extends JComponent  {
 				System.out.println("Released " + key);
 				if(frame.gameP.isVisible == true)
 				{
-					if(key == "Escape")
+					if(frame.gameP.gameOver)
+					{
+						frame.gameP.h = 0;
+						glass.add(overL);
+						glass.add(resetB);
+						glass.add(newB);
+						glass.add(optionsB);
+						glass.add(exitB);
+						isVisible = true;
+						setVisible(true);
+					}
+					else if(key == "Escape")
 					{
 						if (isVisible == false)
 						{
+							frame.gameP.h = 0;
+							glass.add(pauzaL);
+							glass.add(loadB);
+							glass.add(resetB);
+							glass.add(newB);
+							glass.add(optionsB);
+							glass.add(exitB);
 							isVisible = true;
 							setVisible(true);
 						}
 						else
 						{
-						isVisible = false;
-						setVisible(false);
+							frame.gameP.h = 0.1;
+							glass.remove(pauzaL);
+							glass.remove(loadB);
+							glass.remove(resetB);
+							glass.remove(newB);
+							glass.remove(optionsB);
+							glass.remove(exitB);
+							isVisible = false;
+							setVisible(false);
 						}
 					}
 					else if(key == "Up"){
@@ -67,28 +90,19 @@ public class MyGlassPanel extends JComponent  {
 								+ frame.gameP.mapCSS.rocket.getdV()*Math.cos(Math.toRadians(frame.gameP.mapCSS.rocket.getAngle())));
 						frame.gameP.mapCSS.rocket.setVy(frame.gameP.mapCSS.rocket.getVy()
 								- frame.gameP.mapCSS.rocket.getdV()*Math.sin(Math.toRadians(frame.gameP.mapCSS.rocket.getAngle())));
-//						if(yLoc < 0)
-//							yLoc = 0;
 					}
 					else if(key == "Down"){
 						frame.gameP.mapCSS.rocket.setVx(frame.gameP.mapCSS.rocket.getVx()
 								- frame.gameP.mapCSS.rocket.getdV()*Math.cos(Math.toRadians(frame.gameP.mapCSS.rocket.getAngle())));
 						frame.gameP.mapCSS.rocket.setVy(frame.gameP.mapCSS.rocket.getVy()
 								+ frame.gameP.mapCSS.rocket.getdV()*Math.sin(Math.toRadians(frame.gameP.mapCSS.rocket.getAngle())));
-//						if(yLoc > frame.dimension.height)
-//							yLoc = frame.dimension.height;
 					}
 					else if(key == "Left"){
 						frame.gameP.mapCSS.rocket.setvAngle(frame.gameP.mapCSS.rocket.getvAngle() + frame.gameP.mapCSS.rocket.getdVAngle());
-//						if(xLoc < 0)
-//							xLoc = 0;
 					}
 					else if(key == "Right") {
 						frame.gameP.mapCSS.rocket.setvAngle(frame.gameP.mapCSS.rocket.getvAngle() - frame.gameP.mapCSS.rocket.getdVAngle());
-//						if (xLoc > frame.dimension.width)
-//							xLoc = frame.dimension.width;
 					}
-//				}
 					
 				}
 				
@@ -109,6 +123,15 @@ public class MyGlassPanel extends JComponent  {
 
 			public void actionPerformed(ActionEvent arg0) {
 				glass.setVisible(false);
+				frame.gameP.h = 0.1;
+				glass.remove(pauzaL);
+				glass.remove(overL);
+				glass.remove(loadB);
+				glass.remove(resetB);
+				glass.remove(newB);
+				glass.remove(optionsB);
+				glass.remove(exitB);
+				frame.gameP.gameOver = false;
 				frame.gameP.isVisible = false;
 				frame.layout.show(frame.mainP, "options");
 			}
@@ -120,10 +143,56 @@ public class MyGlassPanel extends JComponent  {
 
 			public void actionPerformed(ActionEvent arg0) {
 				glass.setVisible(false);
+				frame.gameP.h = 0.1;
+				glass.remove(pauzaL);
+				glass.remove(overL);
+				glass.remove(loadB);
+				glass.remove(resetB);
+				glass.remove(newB);
+				glass.remove(optionsB);
+				glass.remove(exitB);
 			}
 
 		};
 		loadB.addActionListener(loadListener);
+
+		ActionListener newListener = new ActionListener() {
+
+			public void actionPerformed(ActionEvent arg0) {
+				glass.setVisible(false);
+				frame.gameP.h = 0.1;
+				glass.remove(pauzaL);
+				glass.remove(overL);
+				glass.remove(loadB);
+				glass.remove(resetB);
+				glass.remove(newB);
+				glass.remove(optionsB);
+				glass.remove(exitB);
+				frame.gameP.gameOver = false;
+				frame.gameP.mapCSS = new ClassicSolarSystem();
+			}
+
+		};
+		newB.addActionListener(newListener);
+
+		ActionListener resetListener = new ActionListener() {
+
+			public void actionPerformed(ActionEvent arg0) {
+				glass.setVisible(false);
+				frame.gameP.h = 0.1;
+				glass.remove(pauzaL);
+				glass.remove(overL);
+				glass.remove(loadB);
+				glass.remove(resetB);
+				glass.remove(newB);
+				glass.remove(optionsB);
+				glass.remove(exitB);
+				frame.gameP.gameOver = false;
+				frame.gameP.mapCSS = new ClassicSolarSystem();
+			}
+
+		};
+		resetB.addActionListener(resetListener);
 	}
 	
 	
@@ -145,9 +214,10 @@ public class MyGlassPanel extends JComponent  {
 		g2d.fillRect(0, 0, 2000, 1000);
 		g2d.setPaint(new GradientPaint(x,y,new Color(20,20,20),x,y+dim.height,new Color(50,50,50)));
 		g2d.fillRect(x, y, dim.width, dim.height);
-
 	}
+
 	JLabel pauzaL = new JLabel("Pauza");
+	JLabel overL = new JLabel("Przegrałeś");
 	JButton loadB = new JButton("Kontynuj");
 	JButton resetB = new JButton("Reset");
 	JButton newB = new JButton("Nowa gra");

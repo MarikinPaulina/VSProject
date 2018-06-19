@@ -16,6 +16,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import Map.*;
+import Simulation.Collisions;
 import Simulation.Planet;
 import Simulation.RungeKutta4;
 
@@ -30,6 +31,7 @@ public class GamePanel extends JPanel implements Runnable{
 	int rKey = KeyEvent.VK_R;
 	double h = 0.1;
 	ClassicSolarSystem mapCSS;
+	public boolean gameOver = false;
 	
 	public GamePanel() {}
 
@@ -45,7 +47,6 @@ public class GamePanel extends JPanel implements Runnable{
 		}
 		dimension =	new Dimension(back.getWidth(), back.getHeight());
 		setPreferredSize(dimension);
-		mapCSS = new ClassicSolarSystem();
 		KeyListener moveListener = new KeyListener() {
 			public void keyTyped(KeyEvent e) {}
 			public void keyPressed(KeyEvent e) {
@@ -112,7 +113,8 @@ public class GamePanel extends JPanel implements Runnable{
 	public void run() {
 		if(isVisible==true)
 		{
-			RungeKutta4.step(mapCSS.targets, mapCSS.sources, h);
+			RungeKutta4.step(mapCSS.targets, mapCSS.sources, h,frame);
+			Collisions.theLastBoundary(mapCSS.rocket,frame);
 			
 			mapCSS.rocket.setAngle(mapCSS.rocket.getAngle() + mapCSS.rocket.getvAngle() * h);
 			repaint();

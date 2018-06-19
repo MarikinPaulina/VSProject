@@ -1,10 +1,12 @@
 package Simulation;
 
+import Interface.*;
+
 public class Collisions {
 
 	//	https://physics.stackexchange.com/questions/107648/what-are-the-general-solutions-to-a-hard-sphere-collision
 
-	public static double COLLISION_THRESHOLD = 0.1;
+	public static double COLLISION_THRESHOLD = 10;
 	public Collisions() {}
 
 	public static double impactTime(Body p1, Body p2)
@@ -20,12 +22,12 @@ public class Collisions {
 		return t;
 	}
 	
-	public static void PvP(Body p1, Body p2, double h)
+	public static void PvP(Body p1, Body p2, double h, MainFrame frame)
 	{
 		double t = impactTime(p1,p2);
 		if((0 <= t) && ( t < h))
 		{
-			System.out.println("KOLIZJAAAAAAAAAAAAAAAAAAAAAAAAAA " + t);
+			System.out.println("KOLIZJAAAAAAAAAAAAAAAAAAAAAAAAAA za " + t);
 			double dx = p1.getX() - p2.getX();
 			double dy = p1.getY() - p2.getY();
 			double dvx = p1.getVx() - p2.getVx();
@@ -49,10 +51,14 @@ public class Collisions {
 			}
 			else
 			{
-				System.out.println("Rakieta w niebezpieczeństwie!");
-				double magnitude_velocity_difference = Math.sqrt(dvx * dvx + dvy * dvy);
+				if (p1.isSun || p2.isSun)
+				{
+					frame.gameP.gameOver = true;
+				}
+				double magnitude_velocity_difference = Math.sqrt(Math.pow(dvx,2) + Math.pow(dvy,2));
 				if (magnitude_velocity_difference <= COLLISION_THRESHOLD)
 				{
+					System.out.println("Lądowanie");
 					if (p1 instanceof Rocket)
 					{
 						p1.setVx(p2.getVx());
@@ -64,7 +70,15 @@ public class Collisions {
 						p2.setVy(p1.getVy());
 					}
 				}
+//				else if (magnitude_velocity_difference)
 			}
+		}
+	}
+	public static void theLastBoundary(Rocket r, MainFrame frame)
+	{
+		if((r.getX() < 0) || (r.getX() > frame.dimension.getWidth()) || (r.getY() < 0) || (r.getY() > frame.dimension.getHeight()))
+		{
+			frame.gameP.gameOver = true;
 		}
 	}
 }
