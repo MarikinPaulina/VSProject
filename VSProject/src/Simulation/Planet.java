@@ -5,8 +5,6 @@ import java.awt.*;
 //Wykonanie: Paulina Marikin
 public class Planet extends Body {
 
-
-	
 	public Planet(double x, double y, double vx, double vy, double mass, double angle,double vAngle, double r, boolean isSun)
 	{
 		super(x, y, vx, vy, mass,isSun);

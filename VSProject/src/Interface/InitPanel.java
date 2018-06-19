@@ -14,10 +14,10 @@ import javax.swing.*;
 
 public class InitPanel extends JPanel {
 	private JButton chooseMapB;
-	BufferedImage back;
-	int x = 500;
-	int y = 100;
-	Dimension dim = new Dimension(350,200);
+	private BufferedImage back;
+	private int x = 500;
+	private int y = 100;
+	private Dimension dim = new Dimension(350,200);
 	public InitPanel() {}
 
 	public InitPanel(LayoutManager layout, final MainFrame frame) {
@@ -46,7 +46,7 @@ public class InitPanel extends JPanel {
 				frame.gameP.mapCSS = new ClassicSolarSystem();
 				frame.layout.show(frame.mainP, "game");
 				frame.gameP.isVisible = true;
-//				frame.glass.requestFocusInWindow();
+				System.out.println(frame.requestFocusInWindow());
 			}
 
 		};

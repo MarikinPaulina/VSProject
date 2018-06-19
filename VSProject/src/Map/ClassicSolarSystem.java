@@ -3,6 +3,7 @@ package Map;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
+import java.util.Random;
 
 import Simulation.*;
 
@@ -10,15 +11,20 @@ public class ClassicSolarSystem extends Map{
 
 	public int centerX = 650;
 	public int centerY = 350;
-	public ArrayList<Double> rX = new ArrayList<Double>();
-	public ArrayList<Double> rY = new ArrayList<Double>();
-	
+	public ArrayList<Double> rX = new ArrayList<>();
+	public ArrayList<Double> rY = new ArrayList<>();
+	private Random rand = new Random();
+	public int n;
+	private int cel;
 	
 	public ClassicSolarSystem() {
 		Planet sun = new Planet(centerX,centerY,0,0,1000,0,1,75,true);
 		rX.add(0.0);
 		rY.add(0.0);
-		
+
+		n = 5 - rand.nextInt(2);
+		cel = 1 + rand.nextInt(n);
+
 		rX.add(150.0);
 		rY.add(0.0);
 		Planet planet1 = new Planet(centerX+rX.get(1),centerY+rY.get(1),-0,2.5,10,0,1,10,false);
@@ -30,16 +36,29 @@ public class ClassicSolarSystem extends Map{
 		rX.add(350.0);
 		rY.add(300.0);
 		Planet planet3 = new Planet(centerX+rX.get(3),centerY+rY.get(3),0,-1,10,0,1,15,false);
+
+		rX.add(200.0);
+		rY.add(150.0);
+		Planet planet4 = new Planet(centerX+rX.get(4),centerY+rY.get(4),-2,2.5,50,0,1,50,false);
+
+		rX.add(-150.0);
+		rY.add(200.0);
+		Planet planet5 = new Planet(centerX+rX.get(5),centerY+rY.get(5),1.5,-1,10,0,1,15,false);
 		
 		planets.add(sun);
 		planets.add(planet1);
 		planets.add(planet2);
 		planets.add(planet3);
-		
+		planets.add(planet4);
+		planets.add(planet5);
+		planets.get(cel).isTarget = true;
+
 		sources.add(sun);
 		targets.add(planet1);
 		targets.add(planet2);
 		targets.add(planet3);
+		targets.add(planet4);
+		targets.add(planet5);
 
 		rocket = new Rocket(planet1.getX(),planet1.getY()-planet1.getRadius(),0,0,0.005,120,
 				0,15,30,false);
@@ -51,6 +70,7 @@ public class ClassicSolarSystem extends Map{
 //		g2d.fillRect(200, 200, 200, 200); //Test
 		for (Planet planet : planets)
 		{
+			if(planet.isTarget) {g2d.setColor(Color.green);}
 			planet.drawPlanet(g2d);
 		}
 

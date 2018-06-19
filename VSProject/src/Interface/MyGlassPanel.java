@@ -33,71 +33,7 @@ public class MyGlassPanel extends JComponent  {
 	    newB.setBounds(x+15,y+105,170,30);
 	    optionsB.setBounds(x+15,y+140,170,30);
 	    exitB.setBounds(x+15,y+175,170,30);
-		KeyListener glassListener = new KeyListener() {
-			public void keyTyped(KeyEvent e) {
-				String key = KeyEvent.getKeyText(e.getKeyCode());
-				System.out.println("Typed " + key);
-				}
-			public void keyPressed(KeyEvent e) {
-				String key = KeyEvent.getKeyText(e.getKeyCode());
-				System.out.println("Pressed " + key);
-				}
-			public void keyReleased(KeyEvent e) {
-				String key = KeyEvent.getKeyText(e.getKeyCode());
-				System.out.println("Released " + key);
-				if(frame.gameP.isVisible == true)
-				{
-					if(key == "Escape")
-					{
-						if (isVisible == false)
-						{
-							frame.gameP.h = 0;
-							glass.add(pauzaL);
-							glass.add(loadB);
-							glass.add(resetB);
-							glass.add(newB);
-							glass.add(optionsB);
-							glass.add(exitB);
-							isVisible = true;
-							setVisible(true);
-						}
-						else
-						{
-							frame.gameP.h = 0.1;
-							glass.remove(pauzaL);
-							glass.remove(loadB);
-							glass.remove(resetB);
-							glass.remove(newB);
-							glass.remove(optionsB);
-							glass.remove(exitB);
-							isVisible = false;
-							setVisible(false);
-						}
-					}
-					else if(key == "Up"){
-						frame.gameP.mapCSS.rocket.setVx(frame.gameP.mapCSS.rocket.getVx()
-								+ frame.gameP.mapCSS.rocket.getdV()*Math.cos(Math.toRadians(frame.gameP.mapCSS.rocket.getAngle())));
-						frame.gameP.mapCSS.rocket.setVy(frame.gameP.mapCSS.rocket.getVy()
-								- frame.gameP.mapCSS.rocket.getdV()*Math.sin(Math.toRadians(frame.gameP.mapCSS.rocket.getAngle())));
-					}
-					else if(key == "Down"){
-						frame.gameP.mapCSS.rocket.setVx(frame.gameP.mapCSS.rocket.getVx()
-								- frame.gameP.mapCSS.rocket.getdV()*Math.cos(Math.toRadians(frame.gameP.mapCSS.rocket.getAngle())));
-						frame.gameP.mapCSS.rocket.setVy(frame.gameP.mapCSS.rocket.getVy()
-								+ frame.gameP.mapCSS.rocket.getdV()*Math.sin(Math.toRadians(frame.gameP.mapCSS.rocket.getAngle())));
-					}
-					else if(key == "Left"){
-						frame.gameP.mapCSS.rocket.setvAngle(frame.gameP.mapCSS.rocket.getvAngle() + frame.gameP.mapCSS.rocket.getdVAngle());
-					}
-					else if(key == "Right") {
-						frame.gameP.mapCSS.rocket.setvAngle(frame.gameP.mapCSS.rocket.getvAngle() - frame.gameP.mapCSS.rocket.getdVAngle());
-					}
-					
-				}
-				
-			}
-
-		};
+		OKeyListener glassListener = new OKeyListener(frame,this);
 		frame.addKeyListener(glassListener);
 		ActionListener exitListener = new ActionListener() {
 
@@ -120,7 +56,6 @@ public class MyGlassPanel extends JComponent  {
 				glass.remove(newB);
 				glass.remove(optionsB);
 				glass.remove(exitB);
-				frame.gameP.gameOver = false;
 				frame.gameP.isVisible = false;
 				frame.layout.show(frame.mainP, "options");
 			}
@@ -140,6 +75,7 @@ public class MyGlassPanel extends JComponent  {
 				glass.remove(newB);
 				glass.remove(optionsB);
 				glass.remove(exitB);
+				System.out.println(frame.requestFocusInWindow());
 			}
 
 		};
@@ -157,8 +93,8 @@ public class MyGlassPanel extends JComponent  {
 				glass.remove(newB);
 				glass.remove(optionsB);
 				glass.remove(exitB);
-				frame.gameP.gameOver = false;
 				frame.gameP.mapCSS = new ClassicSolarSystem();
+				System.out.println(frame.requestFocusInWindow());
 			}
 
 		};
@@ -176,8 +112,8 @@ public class MyGlassPanel extends JComponent  {
 				glass.remove(newB);
 				glass.remove(optionsB);
 				glass.remove(exitB);
-				frame.gameP.gameOver = false;
 				frame.gameP.mapCSS = new ClassicSolarSystem();
+				System.out.println(frame.requestFocusInWindow());
 			}
 
 		};
@@ -214,8 +150,8 @@ public class MyGlassPanel extends JComponent  {
 	JButton exitB = new JButton("Wyjście");
 	boolean isVisible = false;
 	MainFrame frame;
-	int x = 575;
-	int y = 100;
-	Dimension dim = new Dimension(200,220);
+	private int x = 575;
+	private int y = 100;
+	private Dimension dim = new Dimension(200,220);
 
 }

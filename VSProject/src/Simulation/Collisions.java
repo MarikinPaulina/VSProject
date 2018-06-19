@@ -9,7 +9,7 @@ public class Collisions {
 	public static double COLLISION_THRESHOLD = 0.1;
 	public Collisions() {}
 
-	public static double impactTime(Body p1, Body p2)
+	public static double impactTime(Body p1, Body p2, double h)
 	{
 		double dx = p1.getX() - p2.getX();
 		double dy = p1.getY() - p2.getY();
@@ -17,15 +17,25 @@ public class Collisions {
 		double dvy = p1.getVy() - p2.getVy();
 		double r0_rprime = dx*dvx + dy*dvy;
 		double r0_r0 = dx*dx + dy*dy;
-		double rprime_rprime = dvx*dvx + dvy*dvy;
-		double t = -(r0_rprime + Math.sqrt(Math.pow(r0_rprime, 2)-rprime_rprime*(r0_r0-Math.pow(p1.getRadius()+p2.getRadius(), 2)))) / rprime_rprime;
+		double rprime_rprime = Math.pow(dvx,2) + Math.pow(dvy,2);
+		double a = Math.pow(r0_rprime, 2);
+		double b = rprime_rprime*(r0_r0-Math.pow(p1.getRadius()+p2.getRadius(), 2));
+		double t = 10000*h;
+		if (a >= b)
+		{
+			t = -(r0_rprime + Math.sqrt(a-b)) / rprime_rprime;
+		}
+		else
+		{
+			System.out.println("Cokolwiek " + a + " " + b);
+		}
 		return t;
 	}
 	
 	public static void PvP(Body p1, Body p2, double h, MainFrame frame)
 	{
-		double t = impactTime(p1,p2);
-		if((0 <= t) && ( t < h))
+		double t = impactTime(p1,p2, h);
+		if(((0 <= t) && ( t < h)))
 		{
 			System.out.println("KOLIZJAAAAAAAAAAAAAAAAAAAAAAAAAA za " + t);
 			double dx = p1.getX() - p2.getX();
@@ -55,10 +65,15 @@ public class Collisions {
 				{
 					frame.gameP.gameOver();
 				}
+				else{
 				double magnitude_velocity_difference = Math.sqrt(Math.pow(dvx,2) + Math.pow(dvy,2));
 				if (magnitude_velocity_difference <= COLLISION_THRESHOLD)
 				{
 					System.out.println("Lądowanie");
+					if(p1.isTarget || p2.isTarget)
+					{
+//						Wygrana
+					}
 					if (p1 instanceof Rocket)
 					{
 						p1.setVx(p2.getVx());
@@ -73,7 +88,7 @@ public class Collisions {
 				else
 				{
 					frame.gameP.gameOver();
-				}
+				}}
 			}
 		}
 	}

@@ -30,8 +30,9 @@ public class GamePanel extends JPanel implements Runnable{
 	int rightKey = KeyEvent.VK_LEFT;
 	int rKey = KeyEvent.VK_R;
 	double h = 0.1;
+	private int i = 0;
+
 	ClassicSolarSystem mapCSS;
-	public boolean gameOver = false;
 	
 	public GamePanel() {}
 
@@ -47,41 +48,6 @@ public class GamePanel extends JPanel implements Runnable{
 		}
 		dimension =	new Dimension(back.getWidth(), back.getHeight());
 		setPreferredSize(dimension);
-		KeyListener moveListener = new KeyListener() {
-			public void keyTyped(KeyEvent e) {}
-			public void keyPressed(KeyEvent e) {
-				int gameKey = e.getKeyCode();
-//				System.out.println(gameKey); //Testy
-//				if(gameKey == upKey){
-//					mapCSS.rocket.setVx(mapCSS.rocket.getVx() + mapCSS.rocket.getdV()*Math.cos(mapCSS.rocket.getAngle()*Math.PI/180));
-//					mapCSS.rocket.setVy(mapCSS.rocket.getVy() + mapCSS.rocket.getdV()*Math.sin(mapCSS.rocket.getAngle()*Math.PI/180));
-//					if(yLoc < 0)
-//						yLoc = 0;
-////					repaint();
-//					}
-//				if(gameKey == downKey){
-//					mapCSS.rocket.setVx(mapCSS.rocket.getVx() - mapCSS.rocket.getdV()*Math.cos(mapCSS.rocket.getAngle()));
-//					mapCSS.rocket.setVy(mapCSS.rocket.getVy() - mapCSS.rocket.getdV()*Math.sin(mapCSS.rocket.getAngle()));
-//					if(yLoc > frame.dimension.height)
-//						yLoc = frame.dimension.height;
-////					repaint();
-//					}
-//				if(gameKey == leftKey){
-//					mapCSS.rocket.setvAngle(mapCSS.rocket.getvAngle() + mapCSS.rocket.getdVAngle());
-//					if(xLoc < 0)
-//						xLoc = 0;
-//					}
-//				if(gameKey == rightKey) {
-//					mapCSS.rocket.setvAngle(mapCSS.rocket.getvAngle() - mapCSS.rocket.getdVAngle());
-//					if (xLoc > frame.dimension.width)
-//						xLoc = frame.dimension.width;
-//				}
-
-			}
-			public void keyReleased(KeyEvent e) {}
-
-		};
-		frame.addKeyListener(moveListener);
 	}
 
 	public GamePanel(boolean isDoubleBuffered) {
@@ -115,22 +81,23 @@ public class GamePanel extends JPanel implements Runnable{
 		glass.setVisible(true);
 	}
 
-	BufferedImage back;
-	Dimension dimension;
-	MainFrame frame;
+	private BufferedImage back;
+	private Dimension dimension;
+	private MainFrame frame;
 	int xLoc = 575;
 	int yLoc = 300;
 	boolean isVisible = false;
 
 	@Override
 	public void run() {
-		if(isVisible==true)
+		if(isVisible)
 		{
 			RungeKutta4.step(mapCSS.targets, mapCSS.sources, h,frame);
 			Collisions.theLastBoundary(mapCSS.rocket,frame);
 			
 			mapCSS.rocket.setAngle(mapCSS.rocket.getAngle() + mapCSS.rocket.getvAngle() * h);
 			repaint();
+			i++;
 		}
 
 	}

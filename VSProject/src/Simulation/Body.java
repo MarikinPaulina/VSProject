@@ -9,14 +9,15 @@ public class Body
 	protected double mass;
 	protected double x;
 	protected double y;
-	protected double vX;
-	protected double vY;
+	private double vX;
+	private double vY;
 	protected double dx;
 	protected double dy;
 	protected double dvx;
 	protected double dvy;
 	protected double radius;
-	public boolean isSun;
+	protected boolean isSun;
+	public boolean isTarget = false;
 	
 	public Body(double x, double y, double vx, double vy, double mass,boolean isSun)
 	{
@@ -36,6 +37,7 @@ public class Body
 		this.vY = body.vY;
 		this.mass = body.mass;
 		this.isSun = body.isSun;
+		this.isTarget = body.isTarget;
 	}
 	
 	public double getMass() 

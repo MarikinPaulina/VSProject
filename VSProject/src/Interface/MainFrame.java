@@ -65,15 +65,15 @@ public class MainFrame extends JFrame {
 	}
 
 
-	MenuPanel menuP = new MenuPanel(null,this);
-	OptionsPanel optionsP = new OptionsPanel(null,this);
-	InitPanel initP = new InitPanel(null,this);
+	private MenuPanel menuP = new MenuPanel(null,this);
+	private OptionsPanel optionsP = new OptionsPanel(null,this);
+	private InitPanel initP = new InitPanel(null,this);
 	public GamePanel gameP = new GamePanel(null,this);
 	CardLayout layout = new CardLayout();
 	JPanel mainP = new JPanel(layout);
 	public MyGlassPanel glass = new MyGlassPanel(this);
 	boolean existGame = false;
-	BufferedImage back;
+	private BufferedImage back;
 	public Dimension dimension;
 	
 	public static void main(String[] args) {
@@ -84,7 +84,7 @@ public class MainFrame extends JFrame {
 				frame.setVisible(true);
 				
 				final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(2);
-				final ScheduledFuture<?> sc1 = scheduler.scheduleAtFixedRate(frame.gameP, 0, 2, TimeUnit.MILLISECONDS);
+				final ScheduledFuture<?> sc1 = scheduler.scheduleAtFixedRate(frame.gameP, 0, 5, TimeUnit.MILLISECONDS);
 				
 			}
 		});
