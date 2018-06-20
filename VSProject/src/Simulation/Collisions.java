@@ -2,6 +2,8 @@ package Simulation;
 
 import Interface.*;
 
+import java.util.ArrayList;
+
 public class Collisions {
 
 	//	https://physics.stackexchange.com/questions/107648/what-are-the-general-solutions-to-a-hard-sphere-collision
@@ -122,6 +124,44 @@ public class Collisions {
 		if((r.getX() < 0) || (r.getX() > frame.dimension.getWidth()) || (r.getY() < 0) || (r.getY() > frame.dimension.getHeight()))
 		{
 			Outcomes.gameOver(frame);
+		}
+	}
+
+	public static void pożeraczPlanet(ArrayList<Planet> planets, MainFrame frame)
+	{
+		for (Planet p1 : planets)
+		{
+			for(Planet p2 : planets)
+			{
+				double dx = p1.getX() - p2.getX();
+				double dy = p1.getY() - p2.getY();
+				double r = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
+				if ((r < ((p1.getRadius() + p2.getRadius())/2)) && (r > 1))
+				{
+					System.out.println("FUUUUUUCK");
+					Planet wieksza;
+					Planet mniejsza;
+					if (p1.getMass() > p2.getMass())
+					{
+						wieksza = p1;
+						mniejsza = p2;
+					}
+					else
+					{
+						wieksza = p2;
+						mniejsza = p1;
+					}
+					wieksza.setMass(mniejsza.getMass() + wieksza.getMass());
+					// V = 4/3 pi r^3
+					// M ~ rho V
+					// M := M1 + M2
+					// Vnew = 4/3 pi (r1^3 + r2^3) = 4/3 pi (rnew^3)
+					double sumRadiusCubes = Math.pow(mniejsza.getRadius(), 3) + Math.pow(wieksza.getRadius(), 3);
+					wieksza.setRadius(Math.pow(sumRadiusCubes, 1./3.));
+					mniejsza.setRadius(0);
+					mniejsza.setMass(0);
+				}
+			}
 		}
 	}
 }

@@ -81,6 +81,7 @@ public class GamePanel extends JPanel implements Runnable{
 		{
 			RungeKutta4.step(mapCSS.targets, mapCSS.sources, h,frame);
 			Collisions.theLastBoundary(mapCSS.rocket,frame);
+			Collisions.pożeraczPlanet(mapCSS.planets,frame);
 			
 			mapCSS.rocket.setAngle(mapCSS.rocket.getAngle() + mapCSS.rocket.getvAngle() * h);
 			repaint();
