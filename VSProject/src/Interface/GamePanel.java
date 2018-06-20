@@ -32,7 +32,7 @@ public class GamePanel extends JPanel implements Runnable{
 	double h = 0.1;
 	private int i = 0;
 
-	ClassicSolarSystem mapCSS;
+	public ClassicSolarSystem mapCSS;
 	
 	public GamePanel() {}
 

@@ -27,7 +27,7 @@ public class Collisions {
 		}
 		else
 		{
-			System.out.println("Cokolwiek " + a + " " + b);
+//			System.out.println("Cokolwiek " + a + " " + b); //Testy
 		}
 		return t;
 	}
@@ -43,21 +43,46 @@ public class Collisions {
 			double dvx = p1.getVx() - p2.getVx();
 			double dvy = p1.getVy() - p2.getVy();
 
-			if ((p1 instanceof Planet) && (p2  instanceof Planet))
-			{
+			if ((p1 instanceof Planet) && (p2  instanceof Planet)) {
 				System.out.println("wow, planety");
-				double jx = dx + dvx*t;
-				double jy = dy + dvy*t;
-				double jabs = Math.sqrt(jx * jx + jy * jy);
-				jx /= jabs;
-				jy /= jabs;
+//				if (Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2)) < ((p1.getRadius() + p2.getRadius())*2))
+//				{
+//					System.out.println("FUUUUUUCK");
+//					Body wieksza;
+//					Body mniejsza;
+//					if (p1.getMass() > p2.getMass())
+//					{
+//						wieksza = p1;
+//						mniejsza = p2;
+//					}
+//					else
+//					{
+//						wieksza = p2;
+//						mniejsza = p1;
+//					}
+//					wieksza.setMass(mniejsza.getMass() + wieksza.getMass());
+//					// V = 4/3 pi r^3
+//					// M ~ rho V
+//					// M := M1 + M2
+//					// Vnew = 4/3 pi (r1^3 + r2^3) = 4/3 pi (rnew^3)
+//					double sumRadiusCubes = Math.pow(mniejsza.getRadius(), 3) + Math.pow(wieksza.getRadius(), 3);
+//					wieksza.setRadius(Math.pow(sumRadiusCubes, 1./3.));
+//					frame.gameP.mapCSS.planets.remove(mniejsza);
+//					frame.gameP.mapCSS.targets.remove(mniejsza);
+//
+//				} else {
+					double jx = dx + dvx * t;
+					double jy = dy + dvy * t;
+					double jabs = Math.sqrt(jx * jx + jy * jy);
+					jx /= jabs;
+					jy /= jabs;
 
-				double J = 2 *(jx*dvx + jy*dvy) / (1/p1.getMass() + 1/p2.getMass());
+					double J = 2 * (jx * dvx + jy * dvy) / (1 / p1.getMass() + 1 / p2.getMass());
 
-				p1.setVx(p1.getVx() - J*jx/p1.getMass());
-				p1.setVy(p1.getVy() - J*jy/p1.getMass());
-				p2.setVx(p2.getVx() + J*jx/p2.getMass());
-				p2.setVy(p2.getVy() + J*jy/p2.getMass());
+					p1.setVx(p1.getVx() - J * jx / p1.getMass());
+					p1.setVy(p1.getVy() - J * jy / p1.getMass());
+					p2.setVx(p2.getVx() + J * jx / p2.getMass());
+					p2.setVy(p2.getVy() + J * jy / p2.getMass());
 			}
 			else
 			{
