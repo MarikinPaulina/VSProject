@@ -33,7 +33,7 @@ public class MenuPanel extends JPanel {
 		}
 		this.add(startB);
 		this.add(loadB);
-		this.add(optionsB);
+//		this.add(optionsB);
 		this.add(exitB);
 		startB.setBounds(250,500,170,30);
 		loadB.setBounds(260,540,170,30);

@@ -106,5 +106,4 @@ public class Rocket extends Body {
 			graphics2D.fillOval(xTable[a],yTable[a],2,2);
 		}
 	}
-	
 }

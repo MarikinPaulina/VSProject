@@ -37,7 +37,7 @@ public class OKeyListener implements KeyListener {
                     glass.add(glass.loadB);
                     glass.add(glass.resetB);
                     glass.add(glass.newB);
-                    glass.add(glass.optionsB);
+//                    glass.add(glass.optionsB);
                     glass.add(glass.exitB);
                     glass.isVisible = true;
                     glass.setVisible(true);

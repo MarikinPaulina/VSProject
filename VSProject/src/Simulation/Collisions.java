@@ -8,7 +8,7 @@ public class Collisions {
 
 	//	https://physics.stackexchange.com/questions/107648/what-are-the-general-solutions-to-a-hard-sphere-collision
 
-	public static double COLLISION_THRESHOLD = 20;
+	public static double COLLISION_THRESHOLD = 5;
 	public Collisions() {}
 
 	public static double impactTime(Body p1, Body p2, double h)

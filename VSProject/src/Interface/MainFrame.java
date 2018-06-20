@@ -21,12 +21,10 @@ import java.util.concurrent.*;
 public class MainFrame extends JFrame {
 
 	public MainFrame() throws HeadlessException {
-		// TODO Auto-generated constructor stub
 	}
 
 	public MainFrame(GraphicsConfiguration gc) {
 		super(gc);
-		// TODO Auto-generated constructor stub
 	}
 
 	public MainFrame(String title) throws HeadlessException {
