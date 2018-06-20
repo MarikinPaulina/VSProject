@@ -68,19 +68,6 @@ public class GamePanel extends JPanel implements Runnable{
 		 mapCSS.draw(g2d);
 		 }
 
-	public void gameOver()
-	{
-		MyGlassPanel glass = frame.glass;
-		frame.gameP.h = 0;
-		glass.add(frame.glass.overL);
-		glass.add(frame.glass.resetB);
-		glass.add(frame.glass.newB);
-		glass.add(frame.glass.optionsB);
-		glass.add(frame.glass.exitB);
-		glass.isVisible = true;
-		glass.setVisible(true);
-	}
-
 	private BufferedImage back;
 	private Dimension dimension;
 	private MainFrame frame;

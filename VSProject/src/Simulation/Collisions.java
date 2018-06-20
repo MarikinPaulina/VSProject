@@ -6,7 +6,7 @@ public class Collisions {
 
 	//	https://physics.stackexchange.com/questions/107648/what-are-the-general-solutions-to-a-hard-sphere-collision
 
-	public static double COLLISION_THRESHOLD = 0.1;
+	public static double COLLISION_THRESHOLD = 20;
 	public Collisions() {}
 
 	public static double impactTime(Body p1, Body p2, double h)
@@ -63,7 +63,7 @@ public class Collisions {
 			{
 				if (p1.isSun || p2.isSun)
 				{
-					frame.gameP.gameOver();
+					Outcomes.gameOver(frame);
 				}
 				else{
 				double magnitude_velocity_difference = Math.sqrt(Math.pow(dvx,2) + Math.pow(dvy,2));
@@ -72,7 +72,7 @@ public class Collisions {
 					System.out.println("Lądowanie");
 					if(p1.isTarget || p2.isTarget)
 					{
-//						Wygrana
+						Outcomes.gameWon(frame);
 					}
 					if (p1 instanceof Rocket)
 					{
@@ -87,7 +87,7 @@ public class Collisions {
 				}
 				else
 				{
-					frame.gameP.gameOver();
+					Outcomes.gameOver(frame);
 				}}
 			}
 		}
@@ -96,7 +96,7 @@ public class Collisions {
 	{
 		if((r.getX() < 0) || (r.getX() > frame.dimension.getWidth()) || (r.getY() < 0) || (r.getY() > frame.dimension.getHeight()))
 		{
-			frame.gameP.gameOver();
+			Outcomes.gameOver(frame);
 		}
 	}
 }

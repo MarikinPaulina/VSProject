@@ -28,6 +28,8 @@ public class MyGlassPanel extends JComponent  {
 		pauzaL.setBounds(x+75,y,170,30);
 		overL.setForeground(Color.white);
 		overL.setBounds(x+55,y,170,30);
+		winL.setForeground(Color.white);
+		winL.setBounds(x+55,y,170,30);
 	    loadB.setBounds(x+15,y+35,170,30);
 	    resetB.setBounds(x+15,y+70,170,30);
 	    newB.setBounds(x+15,y+105,170,30);
@@ -51,6 +53,7 @@ public class MyGlassPanel extends JComponent  {
 				frame.gameP.h = 0.1;
 				glass.remove(pauzaL);
 				glass.remove(overL);
+				glass.remove(winL);
 				glass.remove(loadB);
 				glass.remove(resetB);
 				glass.remove(newB);
@@ -70,6 +73,7 @@ public class MyGlassPanel extends JComponent  {
 				frame.gameP.h = 0.1;
 				glass.remove(pauzaL);
 				glass.remove(overL);
+				glass.remove(winL);
 				glass.remove(loadB);
 				glass.remove(resetB);
 				glass.remove(newB);
@@ -88,6 +92,7 @@ public class MyGlassPanel extends JComponent  {
 				frame.gameP.h = 0.1;
 				glass.remove(pauzaL);
 				glass.remove(overL);
+				glass.remove(winL);
 				glass.remove(loadB);
 				glass.remove(resetB);
 				glass.remove(newB);
@@ -107,6 +112,7 @@ public class MyGlassPanel extends JComponent  {
 				frame.gameP.h = 0.1;
 				glass.remove(pauzaL);
 				glass.remove(overL);
+				glass.remove(winL);
 				glass.remove(loadB);
 				glass.remove(resetB);
 				glass.remove(newB);
@@ -143,6 +149,7 @@ public class MyGlassPanel extends JComponent  {
 
 	JLabel pauzaL = new JLabel("Pauza");
 	JLabel overL = new JLabel("Przegrałeś");
+	JLabel winL = new JLabel("Wygrałeś :)");
 	JButton loadB = new JButton("Kontynuj");
 	JButton resetB = new JButton("Reset");
 	JButton newB = new JButton("Nowa gra");

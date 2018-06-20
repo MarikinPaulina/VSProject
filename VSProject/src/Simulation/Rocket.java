@@ -9,8 +9,8 @@ public class Rocket extends Body {
 	protected double height;
 	protected double angle;
 	protected double vAngle;
-	protected double dVAngle;
-	protected double dV;
+	private double dVAngle;
+	private double dV;
 	
 	public Rocket(double x, double y, double vx, double vy, double mass, double angle,double vAngle, 
 			double width, double height,boolean isSun)
@@ -21,7 +21,7 @@ public class Rocket extends Body {
 		this.height = height;
 		this.width = width;
 		this.dV = 1;
-		this.dVAngle = 0.2;
+		this.dVAngle = 0.7;
 		if(height > width)
 			radius = height/2;
 		else
