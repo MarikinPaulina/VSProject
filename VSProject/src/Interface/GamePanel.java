@@ -1,13 +1,10 @@
 package Interface;
 //Wykonanie: Paulina Marikin
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.KeyEventDispatcher;
 import java.awt.LayoutManager;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
@@ -17,7 +14,6 @@ import javax.swing.JPanel;
 
 import Map.*;
 import Simulation.Collisions;
-import Simulation.Planet;
 import Simulation.RungeKutta4;
 
 public class GamePanel extends JPanel implements Runnable{
@@ -32,7 +28,7 @@ public class GamePanel extends JPanel implements Runnable{
 	double h = 0.1;
 	private int i = 0;
 
-	public ClassicSolarSystem mapCSS;
+	public Map mapCSS;
 	
 	public GamePanel() {}
 
@@ -81,7 +77,7 @@ public class GamePanel extends JPanel implements Runnable{
 		{
 			RungeKutta4.step(mapCSS.targets, mapCSS.sources, h,frame);
 			Collisions.theLastBoundary(mapCSS.rocket,frame);
-			Collisions.pożeraczPlanet(mapCSS.planets,frame);
+			Collisions.galactus(mapCSS.planets,frame);
 			
 			mapCSS.rocket.setAngle(mapCSS.rocket.getAngle() + mapCSS.rocket.getvAngle() * h);
 			repaint();

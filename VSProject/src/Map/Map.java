@@ -2,10 +2,15 @@ package Map;
 //Wykonanie: Paulina Marikin
 import java.awt.Graphics2D;
 import java.util.ArrayList;
+import java.util.Random;
 
 import Simulation.*;
 
 public abstract class Map {
+
+	public int n;
+	public int cel;
+	protected Random rand = new Random();
 
 	public ArrayList<Planet> planets = new ArrayList<Planet>();
 	public Rocket rocket;

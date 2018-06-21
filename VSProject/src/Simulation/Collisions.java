@@ -127,7 +127,7 @@ public class Collisions {
 		}
 	}
 
-	public static void pożeraczPlanet(ArrayList<Planet> planets, MainFrame frame)
+	public static void galactus(ArrayList<Planet> planets, MainFrame frame)
 	{
 		for (Planet p1 : planets)
 		{
@@ -138,6 +138,10 @@ public class Collisions {
 				double r = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
 				if ((r < ((p1.getRadius() + p2.getRadius())/2)) && (r > 1))
 				{
+					if(p1.isTarget || p2.isTarget)
+					{
+						Outcomes.gameOver(frame);
+					}
 					System.out.println("FUUUUUUCK");
 					Planet wieksza;
 					Planet mniejsza;
