@@ -67,7 +67,7 @@ public class ClassicSolarSystem extends Map{
 		rX.add(0.0);
 		rY.add(0.0);
 
-		n = rand.nextInt(2);
+		n = rand.nextInt(3);
 //		cel = 1 + rand.nextInt(n);
 
 		rX.add(150.0);
@@ -86,10 +86,9 @@ public class ClassicSolarSystem extends Map{
 		rY.add(200.0);
 		Planet planet4 = new Planet(centerX+rX.get(4),centerY+rY.get(4),-1,0.75,5,0,1,30,false);
 
-		rX.add(-150.0);
+		rX.add(-50.0);
 		rY.add(200.0);
-		Planet planet5 = new Planet(centerX+rX.get(5),centerY+rY.get(5),1.5,-1,10,0,1,15,false);
-		
+		Planet planet5 = new Planet(centerX+rX.get(5),centerY+rY.get(5),1.9,0,12,0,1,15,false);
 		planets.add(sun);
 		sources.add(sun);
 
@@ -109,13 +108,10 @@ public class ClassicSolarSystem extends Map{
 		else if(n == 1)
 		{
 			planets.add(planet1);
-//		planets.add(planet2);
 			planets.add(planet3);
 			planets.add(planet4);
-//		planets.get(cel).isTarget = true;
 
 			targets.add(planet1);
-//		targets.add(planet2);
 			targets.add(planet3);
 			targets.add(planet4);
 
@@ -125,17 +121,22 @@ public class ClassicSolarSystem extends Map{
 		else
 		{
 			planets.add(planet1);
+			planets.add(planet2);
+			planets.add(planet4);
 			planets.add(planet5);
 
 			targets.add(planet1);
+			targets.add(planet2);
+			targets.add(planet4);
 			targets.add(planet5);
 
-
+			cel = 1 + rand.nextInt(4);
+			planets.get(cel).isTarget = true;
 		}
 
 		rocket = new Rocket(planet1.getX(),planet1.getY()-planet1.getRadius(),0,0,0.005,120,
 				0,15,30,false);
-//		targets.add(rocket);
+		targets.add(rocket);
 	}
 
 	public void draw(Graphics2D g2d) {
