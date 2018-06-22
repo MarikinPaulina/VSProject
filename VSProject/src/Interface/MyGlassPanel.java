@@ -99,7 +99,7 @@ public class MyGlassPanel extends JComponent  {
 				glass.remove(optionsB);
 				glass.remove(exitB);
 				frame.gameP.mapCSS = new ClassicSolarSystem();
-				System.out.println(frame.requestFocusInWindow());
+				frame.requestFocusInWindow();
 			}
 
 		};
@@ -119,7 +119,7 @@ public class MyGlassPanel extends JComponent  {
 				glass.remove(optionsB);
 				glass.remove(exitB);
 				frame.gameP.mapCSS = new ClassicSolarSystem(frame.gameP.mapCSS.n,frame.gameP.mapCSS.cel);
-				System.out.println(frame.requestFocusInWindow());
+				frame.requestFocusInWindow();
 			}
 
 		};

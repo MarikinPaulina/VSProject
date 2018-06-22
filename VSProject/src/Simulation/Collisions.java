@@ -27,10 +27,6 @@ public class Collisions {
 		{
 			t = -(r0_rprime + Math.sqrt(a-b)) / rprime_rprime;
 		}
-		else
-		{
-//			System.out.println("Cokolwiek " + a + " " + b); //Testy
-		}
 		return t;
 	}
 	
@@ -39,40 +35,14 @@ public class Collisions {
 		double t = impactTime(p1,p2, h);
 		if(((0 <= t) && ( t < h)))
 		{
-			System.out.println("KOLIZJAAAAAAAAAAAAAAAAAAAAAAAAAA za " + t);
+//			System.out.println("KOLIZJAAAAAAAAAAAAAAAAAAAAAAAAAA za " + t);
 			double dx = p1.getX() - p2.getX();
 			double dy = p1.getY() - p2.getY();
 			double dvx = p1.getVx() - p2.getVx();
 			double dvy = p1.getVy() - p2.getVy();
 
 			if ((p1 instanceof Planet) && (p2  instanceof Planet)) {
-				System.out.println("wow, planety");
-//				if (Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2)) < ((p1.getRadius() + p2.getRadius())*2))
-//				{
-//					System.out.println("FUUUUUUCK");
-//					Body wieksza;
-//					Body mniejsza;
-//					if (p1.getMass() > p2.getMass())
-//					{
-//						wieksza = p1;
-//						mniejsza = p2;
-//					}
-//					else
-//					{
-//						wieksza = p2;
-//						mniejsza = p1;
-//					}
-//					wieksza.setMass(mniejsza.getMass() + wieksza.getMass());
-//					// V = 4/3 pi r^3
-//					// M ~ rho V
-//					// M := M1 + M2
-//					// Vnew = 4/3 pi (r1^3 + r2^3) = 4/3 pi (rnew^3)
-//					double sumRadiusCubes = Math.pow(mniejsza.getRadius(), 3) + Math.pow(wieksza.getRadius(), 3);
-//					wieksza.setRadius(Math.pow(sumRadiusCubes, 1./3.));
-//					frame.gameP.mapCSS.planets.remove(mniejsza);
-//					frame.gameP.mapCSS.targets.remove(mniejsza);
-//
-//				} else {
+//				System.out.println("wow, planety");
 					double jx = dx + dvx * t;
 					double jy = dy + dvy * t;
 					double jabs = Math.sqrt(jx * jx + jy * jy);
@@ -96,7 +66,7 @@ public class Collisions {
 				double magnitude_velocity_difference = Math.sqrt(Math.pow(dvx,2) + Math.pow(dvy,2));
 				if (magnitude_velocity_difference <= COLLISION_THRESHOLD)
 				{
-					System.out.println("Lądowanie");
+//					System.out.println("Lądowanie");
 					if(p1.isTarget || p2.isTarget)
 					{
 						Outcomes.gameWon(frame);
@@ -142,7 +112,6 @@ public class Collisions {
 					{
 						Outcomes.gameOver(frame);
 					}
-					System.out.println("FUUUUUUCK");
 					Planet wieksza;
 					Planet mniejsza;
 					if (p1.getMass() > p2.getMass())

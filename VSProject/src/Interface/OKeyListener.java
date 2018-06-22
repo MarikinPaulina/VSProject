@@ -9,7 +9,7 @@ public class OKeyListener implements KeyListener {
     private MyGlassPanel glass;
 
 
-    protected OKeyListener(MainFrame frame, MyGlassPanel glass)
+    public OKeyListener(MainFrame frame, MyGlassPanel glass)
     {
         this.frame = frame;
         this.glass = glass;
@@ -17,11 +17,11 @@ public class OKeyListener implements KeyListener {
 
     public void keyTyped(KeyEvent e) {
         String key = KeyEvent.getKeyText(e.getKeyCode());
-        System.out.println("Typed " + key);
+//        System.out.println("Typed " + key);
     }
     public void keyPressed(KeyEvent e) {
         String key = KeyEvent.getKeyText(e.getKeyCode());
-        System.out.println("Pressed " + key);
+//        System.out.println("Pressed " + key);
     }
     public void keyReleased(KeyEvent e) {
         String key = KeyEvent.getKeyText(e.getKeyCode());

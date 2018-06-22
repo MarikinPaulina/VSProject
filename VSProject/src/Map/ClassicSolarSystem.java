@@ -24,38 +24,64 @@ public class ClassicSolarSystem extends Map{
 
 		rX.add(150.0);
 		rY.add(0.0);
-		Planet planet1 = new Planet(centerX+rX.get(1),centerY+rY.get(1),-0,2.5,10,0,1,10,false);
+		Planet planet1 = new Planet(centerX+rX.get(1),centerY+rY.get(1),-0.75,2.5,10,0,1,10,false);
 
-		rX.add(-150.0);
+		rX.add(-190.0);
 		rY.add(0.0);
-		Planet planet2 = new Planet(centerX+rX.get(2),centerY+rY.get(2),0,-2.5,10,0,1,25,false);
+		Planet planet2 = new Planet(centerX+rX.get(2),centerY+rY.get(2),0.5,-2.05,10,0,1,25,false);
 
 		rX.add(350.0);
-		rY.add(300.0);
-		Planet planet3 = new Planet(centerX+rX.get(3),centerY+rY.get(3),0,-1,10,0,1,15,false);
+		rY.add(275.0);
+		Planet planet3 = new Planet(centerX+rX.get(3),centerY+rY.get(3),0.45,-1,10,0,1,15,false);
 
-		rX.add(200.0);
-		rY.add(150.0);
-		Planet planet4 = new Planet(centerX+rX.get(4),centerY+rY.get(4),-2,2.5,50,0,1,50,false);
-
-		rX.add(-150.0);
+		rX.add(150.0);
 		rY.add(200.0);
-		Planet planet5 = new Planet(centerX+rX.get(5),centerY+rY.get(5),1.5,-1,10,0,1,15,false);
+		Planet planet4 = new Planet(centerX+rX.get(4),centerY+rY.get(4),-1,0.75,5,0,1,30,false);
 
+		rX.add(-50.0);
+		rY.add(200.0);
+		Planet planet5 = new Planet(centerX+rX.get(5),centerY+rY.get(5),1.9,0,12,0,1,15,false);
 		planets.add(sun);
-		planets.add(planet1);
-		planets.add(planet2);
-		planets.add(planet3);
-		planets.add(planet4);
-		planets.add(planet5);
-		planets.get(cel).isTarget = true;
-
 		sources.add(sun);
-		targets.add(planet1);
-		targets.add(planet2);
-		targets.add(planet3);
-		targets.add(planet4);
-		targets.add(planet5);
+
+		if(n == 0)
+		{
+			planets.add(planet1);
+			planets.add(planet2);
+			planets.add(planet3);
+
+			targets.add(planet1);
+			targets.add(planet2);
+			targets.add(planet3);
+
+			planets.get(cel).isTarget = true;
+		}
+		else if(n == 1)
+		{
+			planets.add(planet1);
+			planets.add(planet3);
+			planets.add(planet4);
+
+			targets.add(planet1);
+			targets.add(planet3);
+			targets.add(planet4);
+
+			planets.get(cel).isTarget = true;
+		}
+		else
+		{
+			planets.add(planet1);
+			planets.add(planet2);
+			planets.add(planet4);
+			planets.add(planet5);
+
+			targets.add(planet1);
+			targets.add(planet2);
+			targets.add(planet4);
+			targets.add(planet5);
+
+			planets.get(cel).isTarget = true;
+		}
 
 		rocket = new Rocket(planet1.getX(),planet1.getY()-planet1.getRadius(),0,0,0.005,120,
 				0,15,30,false);
@@ -68,7 +94,7 @@ public class ClassicSolarSystem extends Map{
 		rY.add(0.0);
 
 		n = rand.nextInt(3);
-//		cel = 1 + rand.nextInt(n);
+		cel = 1 + rand.nextInt(n);
 
 		rX.add(150.0);
 		rY.add(0.0);

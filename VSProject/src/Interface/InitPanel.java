@@ -46,7 +46,7 @@ public class InitPanel extends JPanel {
 				frame.gameP.mapCSS = new ClassicSolarSystem();
 				frame.layout.show(frame.mainP, "game");
 				frame.gameP.isVisible = true;
-				System.out.println(frame.requestFocusInWindow());
+				frame.requestFocusInWindow();
 			}
 
 		};
